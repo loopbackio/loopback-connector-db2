@@ -1,6 +1,7 @@
-describe('mysql imported features', function () {
+/* eslint-env node, mocha */
+describe('mysql imported features', function() {
 
-  before(function () {
+  before(function() {
     require('./init.js');
   });
 

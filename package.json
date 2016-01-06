@@ -12,7 +12,8 @@
   ],
   "main": "index.js",
   "scripts": {
-    "lint": "eslint ./",
+    "pretest": "eslint ./ && jscs ./",
+    "lint": "eslint ./ && jscs ./",
     "test": "mocha -R spec -b --timeout 10000 --require test/*.test.js"
   },
   "dependencies": {
@@ -22,13 +23,14 @@
     "loopback-connector": "^2.3.0"
   },
   "devDependencies": {
+    "jscs": "^2.8.0",
+    "eslint": "^1.10.3",
+    "eslint-config-strongloop": "^1.0.2",
     "loopback-datasource-juggler": "^2.43.0",
     "mocha": "^2.3.4",
     "rc": "^1.1.5",
     "should": "^7.1.1",
-    "sinon": "^1.17.2",
-    "eslint": "^1.10.3",
-    "eslint-config-strongloop": "^1.0.2"
+    "sinon": "^1.17.2"
   },
   "repository": {
     "type": "git",
