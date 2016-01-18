@@ -19,7 +19,7 @@
   "dependencies": {
     "async": "^1.5.0",
     "debug": "^2.2.0",
-    "ibm_db": "^0.0.15",
+    "ibm_db": "^0.0.17",
     "loopback-connector": "^2.3.0"
   },
   "devDependencies": {
