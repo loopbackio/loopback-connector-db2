@@ -64,6 +64,7 @@ Edit the datasources.json to add other supported properties as required:
 Property       | Type    | Description
 ---------------| --------| --------
 database       | String  | Database name
+schema         | String  | Specifies the default schema name that is used to qualify unqualified database objects in dynamically prepared SQL statements. The value of this property sets the value in the CURRENT SCHEMA special register on the database server. The schema name is case-sensitive, and must be specified in uppercase characters
 username       | String  | DB2 Username
 password       | String  | DB2 password associated with the username above
 hostname       | String  | DB2 server hostname or IP address
