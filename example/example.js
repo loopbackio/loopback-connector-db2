@@ -11,9 +11,7 @@ var config = {
 
 var db = new DataSource(DB2, config);
 
-var User = db.define('User', {
-  name: { type: String },
-  email: { type: String },
+var User = db.define('User', {name: {type: String}, email: {type: String},
 });
 
 db.autoupdate('User', function(err) {
@@ -29,7 +27,7 @@ db.autoupdate('User', function(err) {
     console.log(err, user);
   });
 
-  User.find({ where: { name: 'Tony' }}, function(err, users) {
+  User.find({where: {name: 'Tony'}}, function(err, users) {
     console.log(err, users);
   });
 
