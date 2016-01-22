@@ -6,8 +6,8 @@ var config = {
   username: process.env.DB2_USERNAME,
   password: process.env.DB2_PASSWORD,
   hostname: process.env.DB2_HOSTNAME,
-  port: 50000,
-  database: 'SQLDB',
+  port: process.env.DB2_PORTNUM,
+  database: process.env.DB2_DATABASE,
 };
 
 global.config = config;
