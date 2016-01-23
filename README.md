@@ -1,6 +1,6 @@
 #loopback-connector-db2
 
-[IBM¨ DB2¨]() is the database of choice for robust, enterprise-wide solutions handling high-volume workloads.
+[IBMÂ® DB2Â®]() is the database of choice for robust, enterprise-wide solutions handling high-volume workloads.
 It is optimized to deliver industry-leading performance while lowering costs.  The `loopback-connector-db2`
 module is the LoopBack connector for DB2.
 
