@@ -1,51 +1,40 @@
-## loopback-connector-db2
+[IBM¨ DB2¨]() is the database of choice for robust, enterprise-wide solutions handling high-volume workloads.
+It is optimized to deliver industry-leading performance while lowering costs.  The loopback-connector-db2
+module is the LoopBack connector for DB2.
 
-IBM DB2 connector for the StrongLoop Loopback framework.
+The LoopBack DB2 connector supports:
 
-Please see the full documentation at [docs.strongloop.com](https://docs.strongloop.com/display/public/LB/DB2+connector)
+- All [CRUD operations](https://docs.strongloop.com/display/LB/Creating%2C+updating%2C+and+deleting+data).
+- [Queries](https://docs.strongloop.com/display/LB/Querying+data) with fields, limit, order, skip and where filters.
 
-### Key Features
+The following features are not yet implemented:
 
-* Supports all CRUD operations
-* [Loopback Query](https://docs.strongloop.com/display/public/LB/Querying+data) support for: fields, limit, order, skip and where filters
+- Model discovery.
+- Auto-migration and update.
 
-### Work In Progress
+## Installation
 
-* Model discovery
-* Auto migration and update
-
-### LoopBack Connectors
-
-LoopBack provides connectors for popular relational and NoSQL databases.
-These connectors implement CRUD operations as a common set of methods
-across different databases and allow quick and easy API creation for new
-or existing datasources.
-
-[More Info>>](https://www.ng.bluemix.net/docs/starters/LoopBack/index.html)
-
-### IBM DB2
-
-IBM database of choice for robust, enterprise-wide solutions handling high-volume workloads
-
-[More Info>>](http://www-01.ibm.com/software/data/db2)
-
-### Install
-
-To install the connector cd into the top level directory of your
-loopback application, enter:
+Enter the following in the top-level directory of your LoopBack application:
 
 ```
 $ npm install loopback-connector-db2 --save
 ```
 
-The --save options automatically as the dependency to the package.json
-file
+The `--save` option adds the dependency to the application's `package.json` file.
 
-### Configuring the DB2 datasource
+## Configuration
 
-Use the [Data source generator](https://docs.strongloop.com/display/public/LB/Data+source+generator) to add the DB2 data source to your
-application. The entry in the applications /server/datasources.json will
-look something like this:
+Use the [data source generator](https://docs.strongloop.com/display/LB/Data+source+generator) (`slc loopback:datasource`) to add the DB2 data source to your application.
+The entry in the application's `server/datasources.json` will look something like this:
+
+```
+"mydb": {
+  "name": "mydb",
+  "connector": "db2"
+}
+```
+
+Edit `server/datasources.json` to add other supported properties as required:
 
 ```
 "mydb": {
@@ -59,7 +48,7 @@ look something like this:
 }
 ```
 
-Edit the datasources.json to add other supported properties as required:
+The following table describes the connector properties.
 
 Property       | Type    | Description
 ---------------| --------| --------
@@ -71,7 +60,8 @@ port           | String  | DB2 server TCP port number
 useLimitOffset | Boolean | LIMIT and OFFSET must be configured on the DB2 server before use (compatibility mode)
 
 
-### Example Usage
+Alternatively, you can create and configure the data source in JavaScript code.
+For example:
 
 ```
 var DataSource = require('loopback-datasource-juggler').DataSource;
