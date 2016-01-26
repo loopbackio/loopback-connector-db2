@@ -14,7 +14,7 @@
   "scripts": {
     "pretest": "eslint ./ && jscs ./",
     "lint": "eslint ./ && jscs ./",
-    "test": "mocha --timeout 10000"
+    "test": "mocha --timeout 10000 -ig 'manipulation create should refuse to create object with duplicate id|relations hasMany can be declared in short form|should allow custom scope methods with promises - summarize' test/*.test.js"
   },
   "dependencies": {
     "async": "^1.5.0",
