@@ -5,9 +5,10 @@ var DataSource = require('loopback-datasource-juggler').DataSource;
 var config = {
   username: process.env.DB2_USERNAME,
   password: process.env.DB2_PASSWORD,
-  hostname: process.env.DB2_HOSTNAME,
-  port: process.env.DB2_PORTNUM,
-  database: process.env.DB2_DATABASE,
+  hostname: process.env.DB2_HOSTNAME || 'localhost',
+  port: process.env.DB2_PORTNUM || 60000,
+  database: process.env.DB2_DATABASE || 'testdb',
+  schema: process.env.DB2_SCHEMA,
 };
 
 global.config = config;
