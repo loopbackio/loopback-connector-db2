@@ -14,12 +14,12 @@
   "scripts": {
     "pretest": "eslint ./ && jscs ./",
     "lint": "eslint ./ && jscs ./",
-    "test": "mocha --timeout 10000 -ig 'manipulation create should refuse to create object with duplicate id|relations hasMany can be declared in short form|should allow custom scope methods with promises - summarize' test/*.test.js"
+    "test": "mocha --timeout 10000 test/*.test.js"
   },
   "dependencies": {
     "async": "^1.5.0",
     "debug": "^2.2.0",
-    "ibm_db": "^0.0.17",
+    "ibm_db": "^0.0.18",
     "loopback-connector": "^2.3.0"
   },
   "devDependencies": {
