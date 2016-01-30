@@ -14,7 +14,7 @@
   "scripts": {
     "pretest": "eslint ./ && jscs ./",
     "lint": "eslint ./ && jscs ./",
-    "test": "mocha --timeout 10000"
+    "test": "mocha --timeout 10000 test/*.test.js"
   },
   "dependencies": {
     "async": "^1.5.0",
@@ -30,7 +30,8 @@
     "mocha": "^2.3.4",
     "rc": "^1.1.5",
     "should": "^8.1.1",
-    "sinon": "^1.17.2"
+    "sinon": "^1.17.2",
+    "bluebird": "^2.9.9"   
   },
   "repository": {
     "type": "git",
