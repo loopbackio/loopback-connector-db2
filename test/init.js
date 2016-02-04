@@ -8,7 +8,7 @@ var config = {
   hostname: process.env.DB2_HOSTNAME || 'localhost',
   port: process.env.DB2_PORTNUM || 60000,
   database: process.env.DB2_DATABASE || 'testdb',
-  schema: process.env.DB2_SCHEMA,
+  schema: process.env.DB2_SCHEMA || 'STRONGLOOP',
 };
 
 global.config = config;
