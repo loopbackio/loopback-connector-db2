@@ -263,7 +263,8 @@ describe('migrations', function() {
 
   it('should autoupdate', function(done) {
     var userExists = function(cb) {
-      query('SELECT * FROM UserData', function(err, res) {
+      query('SELECT * FROM STRONGLOOP.\"UserData\"', function(err, res) {
+        console.log('User: ', res);
         cb(!err && res[0].email === 'test@example.com');
       });
     };
