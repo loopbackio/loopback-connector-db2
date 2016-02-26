@@ -1,6 +1,6 @@
 {
   "name": "loopback-connector-db2",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "LoopBack Connector for IBM DB2",
   "keywords": [
     "IBM",
@@ -31,7 +31,7 @@
     "rc": "^1.1.5",
     "should": "^8.1.1",
     "sinon": "^1.17.2",
-    "bluebird": "^2.9.9"   
+    "bluebird": "^2.9.9"
   },
   "repository": {
     "type": "git",
