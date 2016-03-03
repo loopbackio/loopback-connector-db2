@@ -1,4 +1,10 @@
-2016-03-01, Version 1.0.4
+2016-03-03, Version 1.0.5
+=========================
+
+ * updating settings for user in connection string (Quentin Presley)
+
+
+2016-02-29, Version 1.0.4
 =========================
 
  * fix connection string (Quentin Presley)
