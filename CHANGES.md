@@ -1,4 +1,12 @@
-2016-03-03, Version 1.0.5
+2016-03-06, Version 1.0.6
+=========================
+
+ * Remove commented out line in transaction.js (Quentin Presley)
+
+ * Add transaction support and tests (Quentin Presley)
+
+
+2016-03-02, Version 1.0.5
 =========================
 
  * updating settings for user in connection string (Quentin Presley)
