@@ -13,12 +13,14 @@ describe('migrations', function() {
     db = global.getDataSource();
 
     UserData = db.define('UserData', {
-      email: { type: String, null: false, index: true },
+      email: { type: String, null: false, index: true,
+               db2: {columnName: 'email', dataType: 'VARCHAR',
+                     dataLength: 512, nullable: true} },
       name: String,
       bio: Schema.Text,
       birthDate: Date,
       pendingPeriod: Number,
-      createdByAdmin: Boolean},
+      createdByAdmin: Boolean },
       { indexes: {index0: {columns: 'email,createdByAdmin'}}}
     );
 
@@ -37,7 +39,6 @@ describe('migrations', function() {
     });
 
     db.automigrate(['UserData', 'NumberData', 'DateData'], done);
-    // db.automigrate(['UserData'], done);
   });
 
   it('should run migration', function(done) {
@@ -264,7 +265,6 @@ describe('migrations', function() {
   it('should autoupdate', function(done) {
     var userExists = function(cb) {
       query('SELECT * FROM STRONGLOOP.\"UserData\"', function(err, res) {
-        console.log('User: ', res);
         cb(!err && res[0].email === 'test@example.com');
       });
     };
