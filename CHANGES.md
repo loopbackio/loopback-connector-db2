@@ -1,3 +1,12 @@
+2016-03-09, Version 1.0.8
+=========================
+
+ * Update migration to support connector specific properties stanza (Quentin Presley)
+
+
+2016-03-06, Version 1.0.7
+=========================
+
 
 
 2016-03-06, Version 1.0.6
