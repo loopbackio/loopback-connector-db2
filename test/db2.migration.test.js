@@ -118,14 +118,14 @@ describe('migrations', function() {
         indexes[0].COMPRESSION.should.be.eql('N');
         indexes[0].INDEXTYPE.should.be.eql('REG ');
         indexes[0].TABNAME.should.be.eql('UserData');
-        indexes[0].TABSCHEMA.should.be.eql('STRONGLOOP');
+        indexes[0].TABSCHEMA.should.be.eql(global.config.schema);
         indexes[0].UNIQUERULE.should.be.eql('P');
 
         indexes[1].COLNAMES.should.be.eql('+email+createdByAdmin');
         indexes[1].COMPRESSION.should.be.eql('N');
         indexes[1].INDEXTYPE.should.be.eql('REG ');
         indexes[1].TABNAME.should.be.eql('UserData');
-        indexes[1].TABSCHEMA.should.be.eql('STRONGLOOP');
+        indexes[1].TABSCHEMA.should.be.eql(global.config.schema);
         indexes[1].UNIQUERULE.should.be.eql('D');
       }
 
@@ -264,9 +264,10 @@ describe('migrations', function() {
 
   it('should autoupdate', function(done) {
     var userExists = function(cb) {
-      query('SELECT * FROM STRONGLOOP.\"UserData\"', function(err, res) {
-        cb(!err && res[0].email === 'test@example.com');
-      });
+      query('SELECT * FROM ' + global.config.schema + '.\"UserData\"',
+        function(err, res) {
+          cb(!err && res[0].email === 'test@example.com');
+        });
     };
 
     UserData.create({email: 'test@example.com'}, function(err, user) {

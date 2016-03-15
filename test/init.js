@@ -9,6 +9,7 @@ var config = {
   port: process.env.DB2_PORTNUM || 60000,
   database: process.env.DB2_DATABASE || 'testdb',
   schema: process.env.DB2_SCHEMA || 'STRONGLOOP',
+  supportColumnStore: false,
 };
 
 global.config = config;
