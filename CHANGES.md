@@ -1,3 +1,12 @@
+2016-03-16, Version 1.0.11
+==========================
+
+ * Fix support for downlevel DB2 versions (Quentin Presley)
+
+
+2016-03-15, Version 1.0.10
+==========================
+
 
 
 2016-03-15, Version 1.0.9
