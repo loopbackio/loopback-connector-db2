@@ -7,17 +7,17 @@ DROP TABLE LOCALUSER3;
   CREATE TABLE "LOCALUSER1"
    (    "ID" VARCHAR(20) NOT NULL,
         "USERNAME" VARCHAR(250)
-   ) ORGANIZE BY ROW;
+   );
 
   CREATE TABLE "LOCALUSER2"
    (    "ID" VARCHAR(20) NOT NULL,
         "USERNAME" VARCHAR(250)
-   ) ORGANIZE BY ROW;
+   );
 
   CREATE TABLE "LOCALUSER3"
    (    "ID" VARCHAR(20) NOT NULL,
         "USERNAME" VARCHAR(250)
-   ) ORGANIZE BY ROW;
+   );
 
 SET CURRENT SCHEMA = STRONGLOOP;
 
@@ -51,7 +51,7 @@ DROP TABLE RESERVATION;
 	"STATUS" VARCHAR(1024),
 	"CREATED" DATE,
 	"LASTUPDATED" DATE
-   ) ORGANIZE BY ROW;
+   );
 
 --------------------------------------------------------
 --  DDL for Table INVENTORY
@@ -63,7 +63,7 @@ DROP TABLE RESERVATION;
 	"LOCATION_ID" VARCHAR(20),
 	"AVAILABLE" INTEGER,
 	"TOTAL" INTEGER
-   ) ORGANIZE BY ROW ;
+   ) ;
 
 
 -- CREATE SEQUENCE INVENTORY_ID_SEQ START WITH 1 INCREMENT BY 1 NOMAXVALUE;
@@ -83,7 +83,7 @@ DROP TABLE RESERVATION;
 	"ZIPCODE" VARCHAR(16),
 	"NAME" VARCHAR(32),
 	"GEO" VARCHAR(1024)
-   ) ORGANIZE BY ROW;
+   );
 
 --------------------------------------------------------
 --  DDL for Table PRODUCT
@@ -97,7 +97,7 @@ DROP TABLE RESERVATION;
 	"ROUNDS" INTEGER,
 	"EXTRAS" VARCHAR(64),
 	"FIRE_MODES" VARCHAR(64)
-   ) ORGANIZE BY ROW;
+   );
 
 --------------------------------------------------------
 --  DDL for Table RESERVATION
@@ -113,7 +113,7 @@ DROP TABLE RESERVATION;
 	"RESERVE_DATE" DATE,
 	"PICKUP_DATE" DATE,
 	"RETURN_DATE" DATE
-   ) ORGANIZE BY ROW;
+   );
 
 --------------------------------------------------------
 --  DDL for Table SESSION
@@ -123,7 +123,7 @@ DROP TABLE RESERVATION;
    (	"ID" VARCHAR(64) NOT NULL,
 	"UID" VARCHAR(1024),
 	"TTL" INT
-   ) ORGANIZE BY ROW;
+   );
 
 -- REM INSERTING into CUSTOMER
 -- SET DEFINE OFF;

@@ -8,11 +8,7 @@ The LoopBack DB2 connector supports:
 
 - All [CRUD operations](https://docs.strongloop.com/display/LB/Creating%2C+updating%2C+and+deleting+data).
 - [Queries](https://docs.strongloop.com/display/LB/Querying+data) with fields, limit, order, skip and where filters.
-
-The following features are not yet implemented:
-
-- Model discovery.
-- Auto-migration and update.
+- All supported DB2 LUW versions as well as dashDB.  Note for dashDB set supportDashDB in the loopback datasource definition.  Column organized tables are not supported.
 
 ## Installation
 
@@ -61,6 +57,7 @@ password       | String  | DB2 password associated with the username above
 hostname       | String  | DB2 server hostname or IP address
 port           | String  | DB2 server TCP port number
 useLimitOffset | Boolean | LIMIT and OFFSET must be configured on the DB2 server before use (compatibility mode)
+supportDashDB  | Boolean | Create ROW ORGANIZED tables to support dashDB.
 
 
 Alternatively, you can create and configure the data source in JavaScript code.
