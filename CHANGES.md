@@ -1,3 +1,12 @@
+2016-03-23, Version 1.0.13
+==========================
+
+ * Update schema to default to this.username (Quentin Presley)
+
+
+2016-03-16, Version 1.0.12
+==========================
+
 
 
 2016-03-16, Version 1.0.11
