@@ -1,3 +1,19 @@
+2016-04-07, Version 1.0.14
+==========================
+
+ * Updated ping to test SQL (Quentin Presley)
+
+ * Add ping function (Quentin Presley)
+
+ * Add SQL file for dashDB (Quentin Presley)
+
+ * properly identify missing credentials (Sai Vennam)
+
+ * Change test command back (juehou)
+
+ * Use dsn to override other settings if dsn provided (juehou)
+
+
 2016-03-23, Version 1.0.13
 ==========================
 
