@@ -11,6 +11,7 @@ var config = {
   schema: process.env.DB2_SCHEMA || 'STRONGLOOP',
   supportColumnStore: process.env.DB2_USECOLUMNSTORE || false,
   supportDashDB: process.env.DB2_SUPPORT_DASHDB || false,
+  supportDB2z: process.env.DB2_USE_DB2Z || false,
 };
 
 global.config = config;

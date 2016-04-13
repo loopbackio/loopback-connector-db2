@@ -12,6 +12,12 @@ before(function() {
 });
 
 describe('discoverModels', function() {
+  before(function() {
+    if (global.config.supportDB2z) {
+      this.skip();
+    }
+  });
+
   describe('Discover database schemas', function() {
     it('should return an array of db schemas', function(done) {
       db.connector.discoverDatabaseSchemas(function(err, schemas) {
@@ -91,6 +97,12 @@ describe('discoverModels', function() {
 });
 
 describe('Discover models including other users', function() {
+  before(function() {
+    if (global.config.supportDB2z) {
+      this.skip();
+    }
+  });
+
   it('should return an array of all tables and views', function(done) {
 
     db.discoverModelDefinitions({all: true, limit: 3},
@@ -114,6 +126,12 @@ describe('Discover models including other users', function() {
 });
 
 describe('Discover model properties', function() {
+  before(function() {
+    if (global.config.supportDB2z) {
+      this.skip();
+    }
+  });
+
   describe('Discover a named model', function() {
     it('should return an array of columns for PRODUCT', function(done) {
       db.discoverModelProperties('PRODUCT', function(err, models) {
@@ -134,6 +152,12 @@ describe('Discover model properties', function() {
 });
 
 describe('Discover model primary keys', function() {
+  before(function() {
+    if (global.config.supportDB2z) {
+      this.skip();
+    }
+  });
+
   it('should return an array of primary keys for PRODUCT', function(done) {
     db.discoverPrimaryKeys('PRODUCT', function(err, models) {
       if (err) {
@@ -169,6 +193,12 @@ describe('Discover model primary keys', function() {
 });
 
 describe('Discover model foreign keys', function() {
+  before(function() {
+    if (global.config.supportDB2z) {
+      this.skip();
+    }
+  });
+
   it('should return an array of foreign keys for INVENTORY',
     function(done) {
       db.discoverForeignKeys('INVENTORY', function(err, models) {
@@ -205,6 +235,12 @@ describe('Discover model foreign keys', function() {
 });
 
 describe('Discover LDL schema from a table', function() {
+  before(function() {
+    if (global.config.supportDB2z) {
+      this.skip();
+    }
+  });
+
   it('should return an LDL schema for INVENTORY',
     function(done) {
       db.discoverSchema('INVENTORY', {owner: config.schema},
@@ -234,6 +270,12 @@ describe('Discover LDL schema from a table', function() {
 });
 
 describe('Discover and build models', function() {
+  before(function() {
+    if (global.config.supportDB2z) {
+      this.skip();
+    }
+  });
+
   it('should discover and build models',
     function(done) {
       db.discoverAndBuildModels('INVENTORY',
