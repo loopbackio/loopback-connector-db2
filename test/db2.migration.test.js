@@ -10,6 +10,11 @@ var db, UserData, NumberData, DateData;
 
 describe('migrations', function() {
   before(function(done) {
+    if (global.config.supportDB2z) {
+      this.skip();
+      return done();
+    }
+
     db = global.getDataSource();
 
     UserData = db.define('UserData', {
@@ -48,7 +53,7 @@ describe('migrations', function() {
   it('UserData should have correct columns', function(done) {
     db.adapter.getTableStatus('UserData', function(err, fields, indexes) {
       if (err) {
-        console.log(err);
+        return done(err);
       } else {
         fields.should.be.eql([
           {
@@ -112,18 +117,14 @@ describe('migrations', function() {
     // Hence index1 is correct.
     db.adapter.getTableStatus('UserData', function(err, fields, indexes) {
       if (err) {
-        console.log(err);
+        return done(err);
       } else {
         indexes[0].COLNAMES.should.be.eql('+id');
-        indexes[0].COMPRESSION.should.be.eql('N');
-        indexes[0].INDEXTYPE.should.be.eql('REG ');
         indexes[0].TABNAME.should.be.eql('UserData');
         indexes[0].TABSCHEMA.should.be.eql(global.config.schema);
         indexes[0].UNIQUERULE.should.be.eql('P');
 
         indexes[1].COLNAMES.should.be.eql('+email+createdByAdmin');
-        indexes[1].COMPRESSION.should.be.eql('N');
-        indexes[1].INDEXTYPE.should.be.eql('REG ');
         indexes[1].TABNAME.should.be.eql('UserData');
         indexes[1].TABSCHEMA.should.be.eql(global.config.schema);
         indexes[1].UNIQUERULE.should.be.eql('D');
@@ -183,7 +184,7 @@ describe('migrations', function() {
   it('NumberData should have correct columns', function(done) {
     db.adapter.getTableStatus('NumberData', function(err, fields, indexes) {
       if (err) {
-        console.log(err);
+        return done(err);
       } else {
         fields.should.be.eql([
           {
@@ -230,7 +231,7 @@ describe('migrations', function() {
   it('DateData should have correct columns', function(done) {
     db.adapter.getTableStatus('DateData', function(err, fields, indexes) {
       if (err) {
-        console.log(err);
+        return done(err);
       } else {
 
         fields.should.be.eql([
@@ -272,7 +273,7 @@ describe('migrations', function() {
 
     UserData.create({email: 'test@example.com'}, function(err, user) {
       if (err) {
-        console.log('Error: ', err);
+        return done(err);
       } else {
         userExists(function(yep) {
           assert.ok(yep, 'User does not exist');
@@ -288,11 +289,11 @@ describe('migrations', function() {
         // This will not work as expected.
         db.autoupdate(function(err) {
           if (err)
-            throw new Error('Failed to autoupdate database:' + err);
+            return done(err);
 
           db.adapter.getTableStatus('UserData', function(err, fields, indexes) {
             if (err)
-              throw new Error('Failed to get fields');
+              return done(err);
 
             // change nullable for email
             assert.equal(fields[0].NULLS, 'N',
@@ -327,11 +328,11 @@ describe('migrations', function() {
     });
   });
 
-  it('should check actuality of dataSource', function(done) {
+  it.skip('should check actuality of dataSource', function(done) {
     // 'drop column'
     UserData.dataSource.isActual(function(err, ok) {
       if (err)
-        done();
+        return done(err);
 
       // TODO: Need to validate columns/indexes to test actuality and return
       // appropriate values.
@@ -340,10 +341,10 @@ describe('migrations', function() {
       // UserData.defineProperty('email', false); Can't undefine currently.
       UserData.dataSource.isActual(function(err, ok) {
         if (err)
-          done();
+          return done(err);
 
-        // assert.ok(!ok, 'dataSource is actual (shouldn\t be)');
-        done();
+        assert.ok(!ok, 'dataSource is actual (shouldn\'t be)');
+        return done();
       });
     });
   });
@@ -376,7 +377,7 @@ describe('migrations', function() {
       assert.ok(obj);
       DateData.findById(obj.id, function(err, found) {
         if (err) {
-          console.log(err);
+          done(err);
         } else {
           assert.equal(found.dateTime.toGMTString(),
             'Fri, 09 Aug 1996 07:47:33 GMT');
