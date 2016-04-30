@@ -50,3 +50,48 @@ function generateDSN(config) {
     ';CurrentSchema=' + config.schema;
   return dsn;
 }
+
+describe('lazyConnect', function() {
+  it('should skip connect phase (lazyConnect = true)', function(done) {
+    var dsConfig = {
+      host: 'invalid-hostname',
+      port: 80,
+      database: 'invalid-database',
+      username: 'invalid-username',
+      password: 'invalid-password',
+      lazyConnect: true,
+    };
+    var ds = getDS(dsConfig);
+
+    var errTimeout = setTimeout(function() {
+      done();
+    }, 2000);
+    ds.on('error', function(err) {
+      clearTimeout(errTimeout);
+      done(err);
+    });
+  });
+
+  it('should report connection error (lazyConnect = false)', function(done) {
+    var dsConfig = {
+      host: 'invalid-hostname',
+      port: 80,
+      database: 'invalid-database',
+      username: 'invalid-username',
+      password: 'invalid-password',
+      lazyConnect: false,
+    };
+    var ds = getDS(dsConfig);
+
+    ds.on('error', function(err) {
+      err.message.should.containEql('[IBM][CLI Driver]');
+      done();
+      process.exit(0);
+    });
+  });
+
+  var getDS = function(config) {
+    var db = new DataSource(require('../'), config);
+    return db;
+  };
+});
