@@ -41,5 +41,5 @@
   "bugs": {
     "url": "https://github.com/strongloop/loopback-connector-db2/issues"
   },
-  "license": "SEE LICENSE IN LICENSE"
+  "license": "Artistic-2.0"
 }
