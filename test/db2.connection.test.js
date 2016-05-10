@@ -86,7 +86,6 @@ describe('lazyConnect', function() {
     ds.on('error', function(err) {
       err.message.should.containEql('[IBM][CLI Driver]');
       done();
-      process.exit(0);
     });
   });
 
