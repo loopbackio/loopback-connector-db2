@@ -24,6 +24,19 @@ describe('testConnection', function() {
     });
   });
 
+  it('should pass when valid DSN overrides empty settings', function(done) {
+    var dsn = generateDSN(config);
+    var dbConfig = {
+      dsn: dsn,
+    };
+
+    var db = new DataSource(require('../'), dbConfig);
+    db.ping(function(err) {
+      assert(!err, 'Should connect without err.');
+      done(err);
+    });
+  });
+
   it('should pass when valid DSN overrides invalid settings', function(done) {
     var dsn = generateDSN(config);
     var dbConfig = {
