@@ -20,7 +20,7 @@ describe('testConnection', function() {
     var db = new DataSource(require('../'), config);
     db.ping(function(err) {
       assert(!err, 'Should connect without err.');
-      done(err);
+      done();
     });
   });
 
@@ -33,7 +33,7 @@ describe('testConnection', function() {
     var db = new DataSource(require('../'), dbConfig);
     db.ping(function(err) {
       assert(!err, 'Should connect without err.');
-      done(err);
+      done();
     });
   });
 
@@ -51,7 +51,7 @@ describe('testConnection', function() {
     var db = new DataSource(require('../'), dbConfig);
     db.ping(function(err) {
       assert(!err, 'Should connect without err.');
-      done(err);
+      done();
     });
   });
 });
