@@ -1,3 +1,19 @@
+2016-05-13, Version 1.0.16
+==========================
+
+ * Fix done (jannyHou)
+
+ * Check dsn in config before throw error (jannyHou)
+
+ * Remove duplicate error emit (jannyHou)
+
+ * Lazy connect when app booting from swagger generator (juehou)
+
+ * update copyright notices and license (Ryan Graham)
+
+ * Add DB2 z/OS support (Quentin Presley)
+
+
 2016-04-07, Version 1.0.14
 ==========================
 
