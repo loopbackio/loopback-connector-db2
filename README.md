@@ -8,7 +8,7 @@ The LoopBack DB2 connector supports:
 
 - All [CRUD operations](https://docs.strongloop.com/display/LB/Creating%2C+updating%2C+and+deleting+data).
 - [Queries](https://docs.strongloop.com/display/LB/Querying+data) with fields, limit, order, skip and where filters.
-- All supported DB2 LUW versions as well as dashDB.  Note for dashDB set supportDashDB in the loopback datasource definition.  Column organized tables are not supported.
+- All supported DB2 LUW versions.
 
 ## Installation
 
