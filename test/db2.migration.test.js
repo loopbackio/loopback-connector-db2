@@ -378,19 +378,23 @@ describe('migrations', function() {
       dateTime: new Date('Aug 9 1996 07:47:33 GMT'),
       timestamp: new Date('Sep 22 2007 17:12:22 GMT'),
     }, function(err, obj) {
-      assert.ok(!err);
-      assert.ok(obj);
-      DateData.findById(obj.id, function(err, found) {
-        if (err) {
-          done(err);
-        } else {
-          assert.equal(found.dateTime.toGMTString(),
-            'Fri, 09 Aug 1996 07:47:33 GMT');
-          assert.equal(found.timestamp.toGMTString(),
-            'Sat, 22 Sep 2007 17:12:22 GMT');
-        }
-        done();
-      });
+      if (err) {
+        done(err);
+      } else {
+        // assert.ok(!err);
+        assert.ok(obj);
+        DateData.findById(obj.id, function(err, found) {
+          if (err) {
+            done(err);
+          } else {
+            assert.equal(found.dateTime.toGMTString(),
+              'Fri, 09 Aug 1996 07:47:33 GMT');
+            assert.equal(found.timestamp.toGMTString(),
+              'Sat, 22 Sep 2007 17:12:22 GMT');
+          }
+          done();
+        });
+      }
     });
   });
 
