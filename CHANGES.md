@@ -1,6 +1,30 @@
+2016-08-05, Version 1.0.18
+==========================
+
+ * Update Date test to return error (Quentin Presley)
+
+ * update based on comments (Quentin Presley)
+
+ * Use TRIM to remove whitespace in column names (Quentin Presley)
+
+ * Update README.md (Rand McKinney)
+
+ * Update URLs in CONTRIBUTING.md (#40) (Ryan Graham)
+
+ * Update loopback-ibmdb version (Quentin Presley)
+
+ * Change to loopback-ibmdb (Quentin Presley)
+
+ * Move majority of function to loopback-ibmdb (Quentin Presley)
+
+ * Fix index.js exports (Quentin Presley)
+
+ * Initial attempt to componentize IBM connectors (Quentin Presley)
+
+ * Update README.md (Quentin Presley)
 
 
-2016-05-13, Version 1.0.16
+2016-05-13, Version 1.0.17
 ==========================
 
  * Fix done (jannyHou)
