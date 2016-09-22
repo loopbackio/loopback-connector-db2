@@ -64,8 +64,7 @@ function generateDSN(config) {
     ';UID=' + config.username +
     ';PWD=' + config.password +
     ';PORT=' + config.port +
-    ';PROTOCOL=TCPIP' +
-    ';CurrentSchema=' + config.schema;
+    ';PROTOCOL=TCPIP';
   return dsn;
 }
 
