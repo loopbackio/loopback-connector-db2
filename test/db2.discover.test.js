@@ -3,6 +3,8 @@
 // This file is licensed under the Artistic License 2.0.
 // License text available at https://opensource.org/licenses/Artistic-2.0
 
+'use strict';
+
 /* eslint-env node, mocha */
 process.env.NODE_ENV = 'test';
 var assert = require('assert');
@@ -27,7 +29,7 @@ describe('discoverModels', function() {
     it('should return an array of db schemas', function(done) {
       db.connector.discoverDatabaseSchemas(function(err, schemas) {
         if (err) return done(err);
-        schemas.should.be.an.array;
+        schemas.should.be.an.instanceOf(Array);
         schemas.length.should.be.above(0);
         done();
       });
@@ -78,7 +80,6 @@ describe('discoverModels', function() {
 
   describe('Discover models excluding views', function() {
     it('should return an array of only tables', function(done) {
-
       db.discoverModelDefinitions({views: false, limit: 3},
         function(err, models) {
           if (err) {
@@ -109,7 +110,6 @@ describe('Discover models including other users', function() {
   });
 
   it('should return an array of all tables and views', function(done) {
-
     db.discoverModelDefinitions({all: true, limit: 3},
       function(err, models) {
         if (err) {
@@ -153,7 +153,6 @@ describe('Discover model properties', function() {
       });
     });
   });
-
 });
 
 describe('Discover model primary keys', function() {

@@ -3,6 +3,8 @@
 // This file is licensed under the Artistic License 2.0.
 // License text available at https://opensource.org/licenses/Artistic-2.0
 
+'use strict';
+
 /* eslint-env node, mocha */
 process.env.NODE_ENV = 'test';
 
@@ -23,15 +25,15 @@ describe('migrations', function() {
     db = global.getDataSource();
 
     UserData = db.define('UserData', {
-      email: { type: String, null: false, index: true,
+      email: {type: String, null: false, index: true,
                db2: {columnName: 'email', dataType: 'VARCHAR',
-                     dataLength: 512, nullable: true} },
+                     dataLength: 512, nullable: true}},
       name: String,
       bio: Schema.Text,
       birthDate: Date,
       pendingPeriod: Number,
-      createdByAdmin: Boolean },
-      { indexes: {index0: {columns: 'email,createdByAdmin'}}}
+      createdByAdmin: Boolean},
+      {indexes: {index0: {columns: 'email,createdByAdmin'}}}
     );
 
     NumberData = db.define('NumberData', {
@@ -220,7 +222,7 @@ describe('migrations', function() {
             NAME: 'floater',
             NULLS: 'Y',
           },
-          { COLNO: 4,
+          {COLNO: 4,
             DATALENGTH: 4,
             DATATYPE: 'INTEGER',
             NAME: 'id',
@@ -238,7 +240,6 @@ describe('migrations', function() {
       if (err) {
         return done(err);
       } else {
-
         fields.should.be.eql([
           {
             COLNO: 0,
@@ -284,7 +285,7 @@ describe('migrations', function() {
           assert.ok(yep, 'User does not exist');
         });
 
-        UserData.defineProperty('email', { type: String });
+        UserData.defineProperty('email', {type: String});
         UserData.defineProperty('name', {type: String,
           dataType: 'char', limit: 50});
         UserData.defineProperty('newProperty', {type: Number, unsigned: true,
@@ -329,7 +330,7 @@ describe('migrations', function() {
         });
       }
 
-      done && done();
+      if (done) done();
     });
   });
 
@@ -356,7 +357,7 @@ describe('migrations', function() {
 
   it('should allow numbers with decimals', function(done) {
     NumberData.create({number: 1.1234567, tinyInt: 12345, mediumInt: -1234567,
-      floater: 123456789.1234567 }, function(err, obj) {
+      floater: 123456789.1234567}, function(err, obj) {
       assert.ok(!err);
       assert.ok(obj);
       NumberData.findById(obj.id, function(err, found) {
@@ -414,7 +415,6 @@ describe('migrations', function() {
     db.disconnect();
     done();
   });
-
 });
 
 var query = function(sql, cb) {
