@@ -12,9 +12,9 @@
   ],
   "main": "index.js",
   "scripts": {
-    "pretest": "eslint ./ && jscs ./",
-    "lint": "eslint ./ && jscs ./",
-    "test": "mocha --timeout 15000"
+    "lint": "eslint .",
+    "test": "mocha --timeout 15000",
+    "posttest": "npm run lint"
   },
   "dependencies": {
     "async": "^1.5.0",
@@ -23,15 +23,14 @@
     "loopback-ibmdb": "^1.0.0"
   },
   "devDependencies": {
-    "jscs": "^2.8.0",
-    "eslint": "^1.10.3",
-    "eslint-config-strongloop": "^1.0.2",
+    "bluebird": "^2.9.9",
+    "eslint": "^2.13.1",
+    "eslint-config-loopback": "^4.0.0",
     "loopback-datasource-juggler": "^2.43.0",
     "mocha": "^2.3.4",
     "rc": "^1.1.5",
     "should": "^8.1.1",
-    "sinon": "^1.17.2",
-    "bluebird": "^2.9.9"
+    "sinon": "^1.17.2"
   },
   "repository": {
     "type": "git",
