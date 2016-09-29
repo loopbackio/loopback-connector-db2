@@ -7,6 +7,7 @@
 
 module.exports = require('should');
 
+var Connector = require('../');
 var DataSource = require('loopback-datasource-juggler').DataSource;
 
 var config = {
@@ -24,7 +25,7 @@ var config = {
 global.config = config;
 
 global.getDataSource = global.getSchema = function(options) {
-  var db = new DataSource(require('../'), config);
+  var db = new DataSource(Connector, config);
   return db;
 };
 
