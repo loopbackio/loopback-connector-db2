@@ -21,8 +21,7 @@
     "debug": "^2.2.0",
     "loopback-connector": "^2.3.0",
     "loopback-ibmdb": "^1.0.0",
-    "path": "^0.12.7",
-    "strong-globalize": "^2.7.0"
+    "strong-globalize": "^2.8.0"
   },
   "devDependencies": {
     "bluebird": "^2.9.9",
