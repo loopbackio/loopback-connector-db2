@@ -1,13 +1,12 @@
-#loopback-connector-db2
+# loopback-connector-db2
 
 [IBM® DB2®](http://www.ibm.com/analytics/us/en/technology/db2/) is the database of choice for robust, enterprise-wide solutions handling high-volume workloads.
-It is optimized to deliver industry-leading performance while lowering costs.  The `loopback-connector-db2`
-module is the LoopBack connector for DB2.
+It is optimized to deliver industry-leading performance while lowering costs.  The `loopback-connector-db2` module is the LoopBack connector for DB2.
 
 The LoopBack DB2 connector supports:
 
-- All [CRUD operations](https://docs.strongloop.com/display/LB/Creating%2C+updating%2C+and+deleting+data).
-- [Queries](https://docs.strongloop.com/display/LB/Querying+data) with fields, limit, order, skip and where filters.
+- All [create, retrieve, update, and delete operations](http://loopback.io/doc/en/lb2/Creating-updating-and-deleting-data.html).
+- [Queries](http://loopback.io/doc/en/lb2/Querying-data.html) with fields, limit, order, skip and where filters.
 - All supported DB2 LUW versions.
 
 ## Installation
@@ -22,10 +21,10 @@ The `--save` option adds the dependency to the application's `package.json` file
 
 ## Configuration
 
-Use the [data source generator](https://docs.strongloop.com/display/LB/Data+source+generator) (`slc loopback:datasource`) to add the DB2 data source to your application.
+Use the [data source generator](http://loopback.io/doc/en/lb2/Data-source-generator.html)  to add the DB2 data source to your application.
 The entry in the application's `server/datasources.json` will look something like this:
 
-```
+```js
 "mydb": {
   "name": "mydb",
   "connector": "db2"
@@ -34,7 +33,7 @@ The entry in the application's `server/datasources.json` will look something lik
 
 Edit `server/datasources.json` to add other supported properties as required:
 
-```
+```js
 "mydb": {
   "name": "mydb",
   "connector": "db2",
@@ -63,7 +62,7 @@ supportDashDB  | Boolean | Create ROW ORGANIZED tables to support dashDB.
 Alternatively, you can create and configure the data source in JavaScript code.
 For example:
 
-```
+```js
 var DataSource = require('loopback-datasource-juggler').DataSource;
 var DB2 = require('loopback-connector-db2');
 
@@ -104,30 +103,3 @@ db.autoupdate('User', function(err) {
   });
 });
 ```
-## Testing
-
-- Go to [IBM DB2 trials](http://www.ibm.com/analytics/us/en/technology/db2/db2-trials.html) page.
-- Register for an account.
-- Download either IBM DB2 or IBM DB2 Express-C.
-- For documentation or more information about the installation or setup, see http://www.ibm.com/support/knowledgecenter/SSEPGG_11.1.0/com.ibm.db2.luw.kc.doc/welcome.html
-
-### IBM DB2 Express-C scenario on Windows.
-- Run the setup file.
-- Set user information for the DB2 Administration server.
-- Write down the user information and the password that you create. User name is `db2admin` by default but it could be modified.
-- Configure DB2 instance and write down the port number. It is 50000 by default.
-- Once setup is done, Start the `default DB2 and Database Client Interface Selection Wizard`, and proceed with the configuration.
-- Ensure that the DB2 Data server runtime client is started. The default name is `DB2COPY1`.
-- Let's assume your database name is `sample`, and schema name is `STRONGLOOP`.
-- In Windows, start the DB2 Command window-Administrator (In Mac or Linux, use terminal with proper privileges).
-- Make sure that you are in this path `...\IBM\SQLLIB\BIN` (In mac, it should be ` /Users/<userid>/sqllib\bin`), and type the following commands:
-
-```
->set db2instance=server1
-
->db2 connect to sample
-
->db2 set schema to STRONGLOOP
-```
-- Go to `loopback-connector-db2\test\init.js`, and insert the proper credentials.
-- Run `npm test`.
