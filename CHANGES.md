@@ -1,3 +1,45 @@
+2016-11-03, Version 1.0.21
+==========================
+
+ * Remove lazy connect (#69) (Quentin Presley)
+
+ * Update README with correct doc links, etc (crandmck)
+
+ * Setup testing Environement (Loay)
+
+ * Remove extraneous properties (#64) (Quentin Presley)
+
+ * Fix linting errors (#62) (Simon Ho)
+
+ * Add connectorCapabilities global object (Nick Duffy)
+
+ * Fix linting issues (Loay)
+
+ * update (Loay)
+
+ * Use globalization new format 2 (Loay)
+
+ * Use globalization new format (Loay)
+
+ * test: eager load connector (Ryan Graham)
+
+ * Add globalization (Loay)
+
+ * Remove Makefile in favour of NPM scripts (Simon Ho)
+
+ * Skip tests to fix CI (Simon Ho)
+
+ * Use LoopBack ESLint configs (Simon Ho)
+
+ * Update ESLint config (Simon Ho)
+
+ * Update deps to loopback 3.0.0 RC (Miroslav Bajtoš)
+
+ * Remove CurrentSchema (Quentin Presley)
+
+ * Run CI with juggler3 (Loay)
+
+
 2016-08-19, Version 1.0.20
 ==========================
 
