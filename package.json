@@ -1,6 +1,9 @@
 {
   "name": "loopback-connector-db2",
   "version": "1.0.21",
+  "publishConfig": {
+    "tag": "lts"
+  },
   "description": "LoopBack Connector for IBM DB2",
   "keywords": [
     "IBM",
