@@ -5,8 +5,6 @@
 
 'use strict';
 
-var describe = require('./describe');
-
 /* eslint-env node, mocha */
 process.env.NODE_ENV = 'test';
 var assert = require('assert');
