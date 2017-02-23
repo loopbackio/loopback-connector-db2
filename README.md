@@ -122,7 +122,7 @@ db.autoupdate('User', function(err) {
 - Make sure that you are in this path `...\IBM\SQLLIB\BIN` (In mac, it should be ` /Users/<userid>/sqllib\bin`), and type the following commands:
 
 ```
->set db2instance=server1
+>set db2instance=server2
 
 >db2 connect to sample
 
