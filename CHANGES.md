@@ -1,3 +1,31 @@
+2017-03-01, Version 2.0.0-alpha
+===============================
+
+ * package: update to loopback-ibmdb@2.x (Kevin Delisle)
+
+ * Refactor discovery (jannyHou)
+
+ * Update README.md (Rand McKinney)
+
+ * Update README to use lb3 datasource generator (ivy ho)
+
+ * Update LB connector version (Loay)
+
+ * Update paid support URL (Siddhi Pai)
+
+ * Start 3.x + drop support for Node v0.10/v0.12 (siddhipai)
+
+ * Drop support for Node v0.10 and v0.12 (Siddhi Pai)
+
+ * Start the development of the next major version (Siddhi Pai)
+
+ * Add translation files (Candy)
+
+ * Readd the testing env steps in readme (Loay)
+
+ * Use setIsolationLevel (#70) (Quentin Presley)
+
+
 2016-11-03, Version 1.0.21
 ==========================
 

@@ -1,6 +1,6 @@
 {
   "name": "loopback-connector-db2",
-  "version": "3.0.0-alpha.1",
+  "version": "2.0.0-alpha",
   "description": "LoopBack Connector for IBM DB2",
   "engines": {
     "node": ">=4"
