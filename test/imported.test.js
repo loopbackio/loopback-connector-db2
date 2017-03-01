@@ -5,7 +5,6 @@
 
 'use strict';
 
-var describe = require('./describe');
 require('./init');
 
 /* eslint-env node, mocha */
