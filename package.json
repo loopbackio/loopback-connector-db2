@@ -22,8 +22,8 @@
   "dependencies": {
     "async": "^1.5.0",
     "debug": "^2.2.0",
-    "loopback-connector": "^3.0.0",
-    "loopback-ibmdb": "^2.0.0",
+    "loopback-connector": "^4.0.0",
+    "loopback-ibmdb": "^3.0.0",
     "strong-globalize": "^2.8.0"
   },
   "devDependencies": {
