@@ -1,3 +1,27 @@
+2017-04-11, Version 2.0.0
+=========================
+
+ * Remove debug logging of conn details (#95) (Quentin Presley)
+
+ * package: use loopback-ibmdb@2.2.0 (Kevin Delisle)
+
+ * Upgrade to loopback-connector@4.0.0 (jannyHou)
+
+ * Remove lib/migration and require calls (ssh24)
+
+ * Putback an empty lib/migration file (ssh24)
+
+ * Remove lib/migration (ssh24)
+
+ * move isActual func to base connector (biniam)
+
+ * Extract out alterTable function (ssh24)
+
+ * Extract autoupdate and getTableStatus function (ssh24)
+
+ * Add showFields and showIndexes as functions (ssh24)
+
+
 2017-03-01, Version 2.0.0-alpha
 ===============================
 
