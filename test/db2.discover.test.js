@@ -15,10 +15,14 @@ require('./init.js');
 // var DataSource = require('loopback-datasource-juggler').DataSource;
 var db, config;
 
-before(function() {
-  db = global.getDataSource();
-  config = global.config;
-});
+// Note: remove this before() function because it is causing segfault in CI.
+// All the tests in this file are skipped to begin with, so there is no use
+// to call this function anyway.
+// Make sure this will be uncommented when enabling the tests.
+// before(function() {
+//   db = global.getDataSource();
+//   config = global.config;
+// });
 
 describe('discoverModels', function() {
   before(function() {
