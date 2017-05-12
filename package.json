@@ -2,6 +2,9 @@
   "name": "loopback-connector-db2",
   "version": "1.0.20",
   "description": "LoopBack Connector for IBM DB2",
+  "engines": {
+    "node": ">=4"
+  },
   "keywords": [
     "IBM",
     "StrongLoop",
