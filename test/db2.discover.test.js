@@ -238,6 +238,25 @@ describe('Discover model foreign keys', function() {
           }
         });
     });
+  it('should return an array of foreign keys for STRONGLOOP.RESERVATION',
+    function(done) {
+      db.discoverForeignKeys('RESERVATION', {
+        owner: config.schema,
+      },
+        function(err, models) {
+          if (err) {
+            console.error(err);
+            done(err);
+          } else {
+            models.forEach(function(m) {
+              // console.dir(m);
+              console.log(m);
+              assert(m.fkTableName === 'RESERVATION');
+            });
+            done(null, models);
+          }
+        });
+    });
 });
 
 describe('Discover LDL schema from a table', function() {
