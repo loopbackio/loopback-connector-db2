@@ -245,14 +245,18 @@ describe('Discover model foreign keys', function() {
       },
         function(err, models) {
           if (err) {
-            console.error(err);
             done(err);
           } else {
+             var fkNames = ['RESERVATION_CUSTOMER_FK', 'RESERVATION_LOCATION_FK',
+              'RESERVATION_PRODUCT_FK'];
+              var areFKInvalid = false;
             models.forEach(function(m) {
-              // console.dir(m);
-              console.log(m);
               assert(m.fkTableName === 'RESERVATION');
+              if (!(fkNames.indexOf(m.fkName) > -1)) {
+                areFKInvalid = true;
+              }
             });
+            assert(areFKInvalid === false);
             done(null, models);
           }
         });
