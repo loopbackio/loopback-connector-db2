@@ -173,6 +173,8 @@ describe('Discover model primary keys', function() {
         models.forEach(function(m) {
           // console.dir(m);
           assert(m.tableName === 'PRODUCT');
+          assert(m.pkName !== null);
+          assert(m.columnName === 'ID');
         });
         done(null, models);
       }
@@ -191,6 +193,8 @@ describe('Discover model primary keys', function() {
             models.forEach(function(m) {
               // console.dir(m);
               assert(m.tableName === 'PRODUCT');
+              assert(m.pkName !== null);
+              assert(m.columnName === 'ID');
             });
             done(null, models);
           }
@@ -208,6 +212,8 @@ describe('Discover model primary keys', function() {
               models.forEach(function(m) {
                 // console.dir(m);
                 assert(m.tableName === 'CUSTOMER');
+                assert(m.pkName !== null);
+                assert(m.columnName === 'ID');
               });
               done(null, models);
             }
@@ -224,8 +230,10 @@ describe('Discover model primary keys', function() {
               models.forEach(function(m) {
                 // console.dir(m);
                 assert(m.tableName === 'LOCATION');
+                assert(m.pkName !== null);
+                assert(m.columnName === 'ID');
                   });
-                  done(null, models);
+               done(null, models);
             }
           });
       });
