@@ -167,7 +167,6 @@ describe('Discover model primary keys', function() {
   it('should return an array of primary keys for PRODUCT', function(done) {
     db.discoverPrimaryKeys('PRODUCT', function(err, models) {
       if (err) {
-        console.error(err);
         done(err);
       } else {
         models.forEach(function(m) {
@@ -186,7 +185,6 @@ describe('Discover model primary keys', function() {
         {owner: config.schema},
         function(err, models) {
           if (err) {
-            console.error(err);
             done(err);
           } else {
             models.forEach(function(m) {
@@ -204,7 +202,6 @@ describe('Discover model primary keys', function() {
           {owner: config.schema},
           function(err, models) {
             if (err) {
-              console.error(err);
               done(err);
             } else {
               models.forEach(function(m) {
@@ -221,7 +218,6 @@ describe('Discover model primary keys', function() {
         db.discoverPrimaryKeys('LOCATION',
           function(err, models) {
             if (err) {
-              console.error(err);
               done(err);
             } else {
               models.forEach(function(m) {
