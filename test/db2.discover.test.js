@@ -198,7 +198,7 @@ describe('Discover model primary keys', function() {
           }
         });
     });
-    it('should return an array of primary keys for STRONGLOOP.CUSTOMER',
+  it('should return an array of primary keys for STRONGLOOP.CUSTOMER',
       function(done) {
         db.discoverPrimaryKeys('CUSTOMER',
           {owner: config.schema},
@@ -216,7 +216,7 @@ describe('Discover model primary keys', function() {
             }
           });
       });
-    it('should return an array of primary keys for LOCATION',
+  it('should return an array of primary keys for LOCATION',
       function(done) {
         db.discoverPrimaryKeys('LOCATION',
           function(err, models) {
@@ -228,8 +228,8 @@ describe('Discover model primary keys', function() {
                 assert(m.tableName === 'LOCATION');
                 assert(m.pkName !== null);
                 assert(m.columnName === 'ID');
-                  });
-               done(null, models);
+              });
+              done(null, models);
             }
           });
       });
@@ -322,9 +322,9 @@ describe('Discover and build models', function() {
   it('should discover and build models',
     function(done) {
       db.discoverAndBuildModels('INVENTORY',
-                                {owner: config.schema,
-                                 visited: {},
-                                 associations: true},
+        {owner: config.schema,
+          visited: {},
+          associations: true},
         function(err, models) {
           if (err) {
             done();
