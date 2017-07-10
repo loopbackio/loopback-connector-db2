@@ -167,12 +167,12 @@ describe('Discover model primary keys', function() {
   it('should return an array of primary keys for PRODUCT', function(done) {
     db.discoverPrimaryKeys('PRODUCT', function(err, models) {
       if (err) {
-        console.error(err);
         done(err);
       } else {
         models.forEach(function(m) {
-          // console.dir(m);
           assert(m.tableName === 'PRODUCT');
+          assert(m.pkName !== null);
+          assert(m.columnName === 'ID');
         });
         done(null, models);
       }
@@ -185,17 +185,50 @@ describe('Discover model primary keys', function() {
         {owner: config.schema},
         function(err, models) {
           if (err) {
-            console.error(err);
             done(err);
           } else {
             models.forEach(function(m) {
-              // console.dir(m);
               assert(m.tableName === 'PRODUCT');
+              assert(m.pkName !== null);
+              assert(m.columnName === 'ID');
             });
             done(null, models);
           }
         });
     });
+  it('should return an array of primary keys for STRONGLOOP.CUSTOMER',
+      function(done) {
+        db.discoverPrimaryKeys('CUSTOMER',
+          {owner: config.schema},
+          function(err, models) {
+            if (err) {
+              done(err);
+            } else {
+              models.forEach(function(m) {
+                assert(m.tableName === 'CUSTOMER');
+                assert(m.pkName !== null);
+                assert(m.columnName === 'ID');
+              });
+              done(null, models);
+            }
+          });
+      });
+  it('should return an array of primary keys for LOCATION',
+      function(done) {
+        db.discoverPrimaryKeys('LOCATION',
+          function(err, models) {
+            if (err) {
+              done(err);
+            } else {
+              models.forEach(function(m) {
+                assert(m.tableName === 'LOCATION');
+                assert(m.pkName !== null);
+                assert(m.columnName === 'ID');
+              });
+              done(null, models);
+            }
+          });
+      });
 });
 
 describe('Discover model foreign keys', function() {
