@@ -238,6 +238,29 @@ describe('Discover model foreign keys', function() {
           }
         });
     });
+  it('should return an array of foreign keys for STRONGLOOP.RESERVATION',
+    function(done) {
+      db.discoverForeignKeys('RESERVATION', {
+        owner: config.schema,
+      },
+        function(err, models) {
+          if (err) {
+            done(err);
+          } else {
+            var fkNames = ['RESERVATION_CUSTOMER_FK', 'RESERVATION_LOCATION_FK',
+              'RESERVATION_PRODUCT_FK'];
+            var areFKInvalid = false;
+            models.forEach(function(m) {
+              assert(m.fkTableName === 'RESERVATION');
+              if (!(fkNames.indexOf(m.fkName) > -1)) {
+                areFKInvalid = true;
+              }
+            });
+            assert(areFKInvalid === false);
+            done(null, models);
+          }
+        });
+    });
 });
 
 describe('Discover LDL schema from a table', function() {
@@ -285,9 +308,9 @@ describe('Discover and build models', function() {
   it('should discover and build models',
     function(done) {
       db.discoverAndBuildModels('INVENTORY',
-                                {owner: config.schema,
-                                 visited: {},
-                                 associations: true},
+        {owner: config.schema,
+          visited: {},
+          associations: true},
         function(err, models) {
           if (err) {
             done();
