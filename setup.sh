@@ -14,7 +14,7 @@ DB2_CONTAINER="db2_c"
 HOST="localhost"
 PORT=50000
 USER="db2inst1"
-PASSWORD="pa55"
+PASSWORD="DBpa55"
 DATABASE="TESTDB"
 SCHEMA="DB2INST1"
 if [ "$1" ]; then

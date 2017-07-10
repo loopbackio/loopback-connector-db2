@@ -5,8 +5,6 @@
 
 'use strict';
 
-var describe = require('./describe');
-
 /* eslint-env node, mocha */
 process.env.NODE_ENV = 'test';
 var assert = require('assert');
@@ -72,7 +70,7 @@ describe('discoverModels', function() {
             } else {
               models.forEach(function(m) {
                 assert.equal(m.owner.toUpperCase(),
-                             config.username.toUpperCase());
+                  config.username.toUpperCase());
               });
               done(null, models);
             }
@@ -82,24 +80,28 @@ describe('discoverModels', function() {
 
   describe('Discover models excluding views', function() {
     it('should return an array of only tables', function(done) {
-      db.discoverModelDefinitions({views: false, limit: 3},
-        function(err, models) {
-          if (err) {
-            console.error(err);
-            done(err);
-          } else {
-            var views = false;
-            models.forEach(function(m) {
-              // console.dir(m);
-              if (m.type === 'view') {
-                views = true;
-              }
-            });
-            models.should.have.length(3);
-            assert(!views, 'Should not have views');
-            done(null, models);
-          }
-        });
+      db.discoverModelDefinitions({
+        schema: config.schema,
+        views: false,
+        limit: 3,
+      },
+      function(err, models) {
+        if (err) {
+          console.error(err);
+          done(err);
+        } else {
+          var views = false;
+          models.forEach(function(m) {
+            // console.dir(m);
+            if (m.type === 'view') {
+              views = true;
+            }
+          });
+          models.should.have.length(3);
+          assert(!views, 'Should not have views');
+          done(null, models);
+        }
+      });
     });
   });
 });
@@ -197,38 +199,38 @@ describe('Discover model primary keys', function() {
         });
     });
   it('should return an array of primary keys for STRONGLOOP.CUSTOMER',
-      function(done) {
-        db.discoverPrimaryKeys('CUSTOMER',
-          {owner: config.schema},
-          function(err, models) {
-            if (err) {
-              done(err);
-            } else {
-              models.forEach(function(m) {
-                assert(m.tableName === 'CUSTOMER');
-                assert(m.pkName !== null);
-                assert(m.columnName === 'ID');
-              });
-              done(null, models);
-            }
-          });
-      });
+    function(done) {
+      db.discoverPrimaryKeys('CUSTOMER',
+        {owner: config.schema},
+        function(err, models) {
+          if (err) {
+            done(err);
+          } else {
+            models.forEach(function(m) {
+              assert(m.tableName === 'CUSTOMER');
+              assert(m.pkName !== null);
+              assert(m.columnName === 'ID');
+            });
+            done(null, models);
+          }
+        });
+    });
   it('should return an array of primary keys for LOCATION',
-      function(done) {
-        db.discoverPrimaryKeys('LOCATION',
-          function(err, models) {
-            if (err) {
-              done(err);
-            } else {
-              models.forEach(function(m) {
-                assert(m.tableName === 'LOCATION');
-                assert(m.pkName !== null);
-                assert(m.columnName === 'ID');
-              });
-              done(null, models);
-            }
-          });
-      });
+    function(done) {
+      db.discoverPrimaryKeys('LOCATION',
+        function(err, models) {
+          if (err) {
+            done(err);
+          } else {
+            models.forEach(function(m) {
+              assert(m.tableName === 'LOCATION');
+              assert(m.pkName !== null);
+              assert(m.columnName === 'ID');
+            });
+            done(null, models);
+          }
+        });
+    });
 });
 
 describe('Discover model foreign keys', function() {
@@ -276,23 +278,23 @@ describe('Discover model foreign keys', function() {
       db.discoverForeignKeys('RESERVATION', {
         owner: config.schema,
       },
-        function(err, models) {
-          if (err) {
-            done(err);
-          } else {
-            var fkNames = ['RESERVATION_CUSTOMER_FK', 'RESERVATION_LOCATION_FK',
-              'RESERVATION_PRODUCT_FK'];
-            var areFKInvalid = false;
-            models.forEach(function(m) {
-              assert(m.fkTableName === 'RESERVATION');
-              if (!(fkNames.indexOf(m.fkName) > -1)) {
-                areFKInvalid = true;
-              }
-            });
-            assert(areFKInvalid === false);
-            done(null, models);
-          }
-        });
+      function(err, models) {
+        if (err) {
+          done(err);
+        } else {
+          var fkNames = ['RESERVATION_CUSTOMER_FK', 'RESERVATION_LOCATION_FK',
+            'RESERVATION_PRODUCT_FK'];
+          var areFKInvalid = false;
+          models.forEach(function(m) {
+            assert(m.fkTableName === 'RESERVATION');
+            if (!(fkNames.indexOf(m.fkName) > -1)) {
+              areFKInvalid = true;
+            }
+          });
+          assert(areFKInvalid === false);
+          done(null, models);
+        }
+      });
     });
 });
 
@@ -350,7 +352,7 @@ describe('Discover and build models', function() {
           }
 
           assert(models.Inventory,
-                 'Inventory model should be discovered and built');
+            'Inventory model should be discovered and built');
           var schema = models.Inventory.definition;
           assert(schema.settings.db2.schema === config.schema);
           assert(schema.settings.db2.table === 'INVENTORY');
