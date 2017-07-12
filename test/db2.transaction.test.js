@@ -5,8 +5,6 @@
 
 'use strict';
 
-var describe = require('./describe');
-
 /* eslint-env node, mocha */
 process.env.NODE_ENV = 'test';
 
@@ -77,7 +75,7 @@ describe('transactions', function() {
       before(createPostInTx(post));
 
       it('should not see the uncommitted insert',
-         expectToFindPosts(post, 0));
+        expectToFindPosts(post, 0));
 
       it('should see the uncommitted insert from the same transaction',
         expectToFindPosts(post, 1, true));

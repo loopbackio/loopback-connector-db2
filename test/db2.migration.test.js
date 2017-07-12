@@ -5,8 +5,6 @@
 
 'use strict';
 
-var describe = require('./describe');
-
 /* eslint-env node, mocha */
 process.env.NODE_ENV = 'test';
 
@@ -28,14 +26,14 @@ describe('migrations', function() {
 
     UserData = db.define('UserData', {
       email: {type: String, null: false, index: true,
-               db2: {columnName: 'email', dataType: 'VARCHAR',
-                     dataLength: 512, nullable: true}},
+        db2: {columnName: 'email', dataType: 'VARCHAR',
+          dataLength: 512, nullable: true}},
       name: String,
       bio: Schema.Text,
       birthDate: Date,
       pendingPeriod: Number,
       createdByAdmin: Boolean},
-      {indexes: {index0: {columns: 'email,createdByAdmin'}}}
+    {indexes: {index0: {columns: 'email,createdByAdmin'}}}
     );
 
     NumberData = db.define('NumberData', {
@@ -305,16 +303,16 @@ describe('migrations', function() {
 
             // change nullable for email
             assert.equal(fields[0].NULLS, 'N',
-                         'Email does not allow null');
+              'Email does not allow null');
 
             // change type of name
             assert.equal(fields[1].DATATYPE, 'VARCHAR',
-                         'Name is not char(50)');
+              'Name is not char(50)');
             assert.equal(fields[1].DATALENGTH, 512, 'Length is not 512');
 
             // add new column
             assert.ok(fields[7].NAME, 'NEWPROPERTY',
-                      'New column was not added');
+              'New column was not added');
 
             if (fields[7].NAME === 'NEWPROPERTY') {
               assert.equal(fields[7].DATATYPE, 'BIGINT',

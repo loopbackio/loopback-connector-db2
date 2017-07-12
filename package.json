@@ -16,8 +16,9 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
+    "pretest": "node pretest.js",
     "test": "mocha --timeout 15000 --require test/init.js",
-    "posttest": "npm run lint"
+    "posttest": "node posttest.js && npm run lint"
   },
   "dependencies": {
     "async": "^1.5.0",
@@ -28,8 +29,9 @@
   },
   "devDependencies": {
     "bluebird": "^2.9.9",
-    "eslint": "^2.13.1",
-    "eslint-config-loopback": "^4.0.0",
+    "eslint": "^4.2.0",
+    "eslint-config-loopback": "^8.0.0",
+    "lodash": "^4.17.4",
     "loopback-datasource-juggler": "^3.0.0",
     "mocha": "^2.3.4",
     "rc": "^1.1.5",
