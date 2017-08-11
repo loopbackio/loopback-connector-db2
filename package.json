@@ -17,7 +17,7 @@
   "scripts": {
     "lint": "eslint .",
     "pretest": "node pretest.js",
-    "test": "mocha --timeout 15000 --require test/init.js || :",
+    "test": "mocha --timeout 15000 --require test/init.js",
     "posttest": "node posttest.js && npm run lint"
   },
   "dependencies": {
