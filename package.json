@@ -18,7 +18,7 @@
     "lint": "eslint .",
     "pretest": "node pretest.js",
     "test": "mocha --timeout 15000 --require test/init.js",
-    "posttest": "node posttest.js && npm run lint"
+    "posttest": "npm run lint"
   },
   "dependencies": {
     "async": "^1.5.0",
