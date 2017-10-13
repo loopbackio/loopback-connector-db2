@@ -1,3 +1,57 @@
+2017-10-13, Version 2.1.0
+=========================
+
+ * update strong-globalize to 3.1.0 (shimks)
+
+ * Add stalebot configuration (Kevin Delisle)
+
+ * Create Issue and PR Templates (#118) (Sakib Hasan)
+
+ * Clean up old schemas in pretest (ssh24)
+
+ * Revert "Run posttest even when test fails" (Sakib Hasan)
+
+ * Update translated strings Q3 2017 (Allen Boone)
+
+ * update messages.json (Diana Lau)
+
+ * Add CODEOWNER file (Diana Lau)
+
+ * Run posttest even when test fails (ssh24)
+
+ * Add tests on autoupdate (ssh24)
+
+ * Fix repo name env variable (ssh24)
+
+ * Fix db2 CI (ssh24)
+
+ * Fix linting issues (harsh_sanjanwala)
+
+ * Fix lint errors (harsh_sanjanwala)
+
+ * Added enhanced check (swapnil-girme)
+
+ * Adding Test Case (swapnil-girme)
+
+ * updated discovery.js for relations issue (sontarge)
+
+ * Adding asserts (swapnil-girme)
+
+ * Adding unit test cases (Harsh Sanjanwala)
+
+ * Update discovery.js (pooja-kothari)
+
+ * Replicate new issue_template from loopback (Siddhi Pai)
+
+ * Replicate issue_template from loopback repo (Siddhi Pai)
+
+ * Require init on mocha args (Candy)
+
+ * Add docker setup (ssh24)
+
+ * DB2 with Docker (Andre Fernandes)
+
+
 2017-04-11, Version 2.0.0
 =========================
 
