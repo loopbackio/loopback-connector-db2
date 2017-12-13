@@ -1,3 +1,13 @@
+2017-12-13, Version 2.1.1
+=========================
+
+ * fixup: parse affectedRows into Numbers (Kevin Delisle)
+
+ * Use count for update/delete (Quentin Presley)
+
+ * chore:update license (Diana Lau)
+
+
 2017-10-13, Version 2.1.0
 =========================
 
