@@ -3,7 +3,7 @@
   "version": "2.1.1",
   "description": "LoopBack Connector for IBM DB2",
   "engines": {
-    "node": ">=4"
+    "node": ">=6"
   },
   "keywords": [
     "IBM",
@@ -25,18 +25,18 @@
     "debug": "^2.2.0",
     "loopback-connector": "^4.0.0",
     "loopback-ibmdb": "^2.2.0",
-    "strong-globalize": "^3.1.0"
+    "strong-globalize": "^4.0.0"
   },
   "devDependencies": {
-    "bluebird": "^2.9.9",
-    "eslint": "^4.2.0",
-    "eslint-config-loopback": "^8.0.0",
-    "lodash": "^4.17.4",
-    "loopback-datasource-juggler": "^3.0.0",
-    "mocha": "^2.3.4",
-    "rc": "^1.1.5",
-    "should": "^8.1.1",
-    "sinon": "^1.17.2"
+    "bluebird": "^3.5.1",
+    "eslint": "^5.3.0",
+    "eslint-config-loopback": "^11.0.0",
+    "lodash": "^4.17.10",
+    "loopback-datasource-juggler": "^3.23.0",
+    "mocha": "^5.2.0",
+    "rc": "^1.2.8",
+    "should": "^13.2.3",
+    "sinon": "^6.1.5"
   },
   "repository": {
     "type": "git",
