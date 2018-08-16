@@ -3,7 +3,7 @@
   "version": "2.1.1",
   "description": "LoopBack Connector for IBM DB2",
   "engines": {
-    "node": ">=4"
+    "node": ">=6"
   },
   "keywords": [
     "IBM",
@@ -25,7 +25,7 @@
     "debug": "^2.2.0",
     "loopback-connector": "^4.0.0",
     "loopback-ibmdb": "^2.2.0",
-    "strong-globalize": "^3.1.0"
+    "strong-globalize": "^4.0.0"
   },
   "devDependencies": {
     "bluebird": "^2.9.9",
