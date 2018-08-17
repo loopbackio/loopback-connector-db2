@@ -33,8 +33,7 @@ describe('migrations', function() {
       birthDate: Date,
       pendingPeriod: Number,
       createdByAdmin: Boolean},
-    {indexes: {index0: {columns: 'email,createdByAdmin'}}}
-    );
+    {indexes: {index0: {columns: 'email,createdByAdmin'}}});
 
     NumberData = db.define('NumberData', {
       number: {type: Number, null: false, index: true, unsigned: true,
@@ -43,7 +42,8 @@ describe('migrations', function() {
       mediumInt: {type: Number, dataType: 'INTEGER', unsigned: true,
         required: true},
       floater: {type: Number, dataType: 'DECIMAL', precision: 16, scale: 7},
-      bigInt: {type: Number, dataType: 'BIGINT', unsigned: true, required: true},
+      bigInt: {type: Number, dataType: 'BIGINT', unsigned: true,
+        required: true},
     });
 
     DateData = db.define('DateData', {
@@ -365,7 +365,7 @@ describe('migrations', function() {
   it('should allow numbers with decimals', function(done) {
     NumberData.create({number: 1.1234567, tinyInt: 12345, mediumInt: -1234567,
       bigInt: 9007199254740991, floater: 123456789.1234567},
-      function(err, obj) {
+    function(err, obj) {
       assert.ok(!err);
       assert.ok(obj);
       NumberData.findById(obj.id, function(err, found) {
