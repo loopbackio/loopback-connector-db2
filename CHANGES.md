@@ -1,3 +1,15 @@
+2019-01-15, Version 2.1.2
+=========================
+
+ * Add descriptions for dsn and maxPoolSize (Johan Schon)
+
+ * Remove node 4 support (#128) (Quentin Presley)
+
+ * Add debug messages for discovery (#127) (Quentin Presley)
+
+ * [WebFM] cs/pl/ru translation (candytangnb)
+
+
 2017-12-13, Version 2.1.1
 =========================
 
