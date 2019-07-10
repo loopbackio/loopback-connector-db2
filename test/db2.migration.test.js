@@ -33,8 +33,7 @@ describe('migrations', function() {
       birthDate: Date,
       pendingPeriod: Number,
       createdByAdmin: Boolean},
-    {indexes: {index0: {columns: 'email,createdByAdmin'}}}
-    );
+    {indexes: {index0: {columns: 'email,createdByAdmin'}}});
 
     NumberData = db.define('NumberData', {
       number: {type: Number, null: false, index: true, unsigned: true,
