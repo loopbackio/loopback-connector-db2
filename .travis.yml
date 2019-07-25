@@ -4,6 +4,13 @@ node_js:
   - "10"
   - "12"
 
+env:
+  global:
+    - DB2_HOST="localhost"
+    - DB2_PORT=50000
+    - DB2_USER="db2inst1"
+    - DB2_PASSWORD="DBpa55"
+
 branches:
   only:
     - master
