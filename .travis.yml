@@ -10,6 +10,7 @@ env:
     - DB2_PORT=50000
     - DB2_USER="db2inst1"
     - DB2_PASSWORD="DBpa55"
+    - DB2_SCHEMA="DB2INST1"
 
 branches:
   only:
