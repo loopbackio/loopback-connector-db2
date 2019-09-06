@@ -17,6 +17,8 @@ USER="db2inst1"
 PASSWORD="DBpa55"
 DATABASE="TESTDB"
 SCHEMA="DB2INST1"
+DB2INST_NAME="db2inst1"
+
 if [ "$1" ]; then
     HOST=$1
 fi
@@ -47,12 +49,12 @@ printf "\n${CYAN}Clean up complete.${PLAIN}\n"
 
 ## pull latest db2 image
 printf "\n${RED}>> Pulling latest db2 image${PLAIN} ${GREEN}...${PLAIN}"
-docker pull ibmcom/db2express-c:latest > /dev/null 2>&1
+docker pull ibmcom/db2:latest > /dev/null 2>&1
 printf "\n${CYAN}Image successfully built.${PLAIN}\n"
 
 ## run the db2 container
 printf "\n${RED}>> Starting the db2 container${PLAIN} ${GREEN}...${PLAIN}\n"
-CONTAINER_STATUS=$(docker run --name $DB2_CONTAINER -e LICENSE=accept -e DB2INST1_PASSWORD=$PASSWORD -p $PORT:50000 -d ibmcom/db2express-c:latest db2start 2>&1)
+CONTAINER_STATUS=$(docker run --name $DB2_CONTAINER --privileged --ipc=host -e LICENSE=accept -e DB2INST1_PASSWORD=$PASSWORD -e DB2INSTANCE=$DB2INST_NAME -p $PORT:50000 -p 55000 -d ibmcom/db2:latest ibmcom/db2 2>&1)
 if [[ "$CONTAINER_STATUS" == *"Error"* ]]; then
     printf "\n\n${CYAN}Status: ${PLAIN}${RED}Error starting container. Terminating setup.${PLAIN}\n\n"
     exit 1
