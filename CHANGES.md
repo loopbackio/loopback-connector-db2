@@ -1,4 +1,16 @@
-2019-01-15, Version 2.1.2
+2019-09-19, Version 2.2.0
+=========================
+
+ * use new docker image ibmcom/db2 (Diana Lau)
+
+ * drop support for node 6 (Nora)
+
+ * chore: fix linting issues (Dominique Emond)
+
+ * chore: update copyrights years (Agnes Lin)
+
+
+2019-01-14, Version 2.1.2
 =========================
 
  * Add descriptions for dsn and maxPoolSize (Johan Schon)
