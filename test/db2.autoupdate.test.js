@@ -27,7 +27,10 @@ describe('autoupdate', function() {
     };
     SimpleEmployee = db.define('SimpleEmployee', properties);
     db.autoupdate(function(err) {
-      assert(!err);
+      if (err) {
+        err.message += ' (while running initial autoupdate)';
+        return done(err);
+      }
       db.connector.getTableStatus('SimpleEmployee',
         function(err, fields, indexes) {
           assert(!err);
@@ -45,7 +48,10 @@ describe('autoupdate', function() {
 
   it('perform autoupdate and check pk index', function(done) {
     db.autoupdate('SimpleEmployee', function(err) {
-      assert(!err);
+      if (err) {
+        err.message += ' (while updating SimpleEmployee)';
+        return done(err);
+      }
       db.connector.getTableStatus('SimpleEmployee',
         function(err, fields, indexes) {
           assert(!err);
