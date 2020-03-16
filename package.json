@@ -20,6 +20,13 @@
     "test": "mocha --timeout 60000 test/*.test.js node_modules/juggler-v3/test.js node_modules/juggler-v4/test.js",
     "posttest": "npm run lint"
   },
+  "files": [
+    "intl",
+    "lib",
+    "docs.json",
+    "index.js",
+    "setup.sh"
+  ],
   "dependencies": {
     "async": "^1.5.0",
     "debug": "^2.2.0",
