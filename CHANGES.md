@@ -1,3 +1,17 @@
+2020-03-19, Version 2.2.1
+=========================
+
+ * Exclude 'deps'  and '.github'  from npm publish (Dominique Emond)
+
+ * run shared test on v3 and v4 (Agnes Lin)
+
+ * chore: update copyrights year (Diana Lau)
+
+ * chore: improve issue and PR templates (Nora)
+
+ * chore: update CODEOWNERS (Nora)
+
+
 2019-09-19, Version 2.2.0
 =========================
 
