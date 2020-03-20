@@ -32,7 +32,7 @@
     "debug": "^2.2.0",
     "loopback-connector": "^4.0.0",
     "loopback-ibmdb": "^2.2.0",
-    "strong-globalize": "^4.0.0"
+    "strong-globalize": "^5.0.0"
   },
   "devDependencies": {
     "bluebird": "^3.5.1",
