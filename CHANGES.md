@@ -1,3 +1,11 @@
+2020-07-13, Version 2.2.2
+=========================
+
+ * fix: catch error properly for deleteall (jannyHou)
+
+ * chore: update strong-globalize version (Diana Lau)
+
+
 2020-03-19, Version 2.2.1
 =========================
 
