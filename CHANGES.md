@@ -1,3 +1,15 @@
+2021-07-07, Version 2.2.3
+=========================
+
+ * fix: lb4 discover giving error (Pradeep Kumar Tippa)
+
+ * chore: revert changes (Diana Lau)
+
+ * chore: test dco (Diana Lau)
+
+ * chore: enable DCO (Diana Lau)
+
+
 2020-07-13, Version 2.2.2
 =========================
 
