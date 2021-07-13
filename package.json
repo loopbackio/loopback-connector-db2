@@ -6,8 +6,6 @@
     "node": ">=8.9"
   },
   "keywords": [
-    "IBM",
-    "StrongLoop",
     "LoopBack",
     "DB2",
     "DataSource",
@@ -50,11 +48,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/strongloop/loopback-connector-db2.git"
+    "url": "git://github.com/loopbackio/loopback-connector-db2.git"
   },
-  "homepage": "https://github.com/strongloop/loopback-connector-db2",
+  "homepage": "https://github.com/loopbackio/loopback-connector-db2",
   "bugs": {
-    "url": "https://github.com/strongloop/loopback-connector-db2/issues"
+    "url": "https://github.com/loopbackio/loopback-connector-db2/issues"
   },
   "license": "Artistic-2.0",
   "author": "IBM Corp."
