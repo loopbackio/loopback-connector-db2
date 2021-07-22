@@ -1,0 +1,103 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [master]
+  schedule:
+    - cron: '0 2 * * 1' # At 02:00 on Monday
+
+env:
+  NODE_OPTIONS: --max-old-space-size=4096
+
+jobs:
+  test:
+    name: Test
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [8.9, 10, 12, 14, 16]
+        db2:
+          - image-tag: latest
+            port-num: 50000
+          - image-tag: '11.5.0.0'
+            port-num: 25000
+      fail-fast: false
+    runs-on: ${{ matrix.os }}
+    services: 
+      db2:
+        image: ibmcom/db2:${{ matrix.db2.image-tag }}
+        env:
+          DBNAME: STRONGLOOP
+          DB2INSTANCE: db2inst1
+          DB2INST1_PASSWORD: CIDBPassword123
+          LICENSE: accept
+        ports: ['${{ matrix.db2.port-num }}:${{ matrix.db2.port-num }}']
+        # options: >-
+        #   --health-cmd="db2 connect to STRONGLOOP USER db2inst1 USING CIDBPassword123 && db2 ping hostdb"
+        #   --health-timeout=0
+        #   --health-retries=100
+    env:
+      DB2_USERNAME: db2inst1
+      DB2_PASSWORD: CIDBPassword123
+      DB2_PORTNUM: ${{ matrix.db2.port-num }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Bootstrap project
+        if: ${{ matrix.node-version != '8.9' }}
+        run: npm ci
+      - name: Bootstrap project (Node v8.9)
+        if: ${{ matrix.node-version == '8.9' }}
+        run: npm install
+      - name: Run tests
+        run: |
+          npm run pretest --ignore-scripts
+          npm test --ignore-scripts
+
+  code-lint:
+    name: Code Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - name: Bootstrap project
+        if: ${{matrix.node-version != '8.9'}}
+        run: npm ci
+      - name: Bootstrap project (Node v8.9)
+        if: ${{matrix.node-version == '8.9'}}
+        run: npm install
+      - name: Verify code linting
+        run: npm run lint
+
+  commit-lint:
+    name: Commit Lint
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Use Node.js 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - name: Bootstrap project
+        if: ${{matrix.node-version != '8.9'}}
+        run: npm ci
+      - name: Bootstrap project (Node v8.9)
+        if: ${{matrix.node-version == '8.9'}}
+        run: npm install
+      - name: Verify commit linting
+        run: npx commitlint --from origin/master --to HEAD --verbose

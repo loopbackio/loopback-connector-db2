@@ -1,0 +1,47 @@
+arch:
+  - ppc64le
+  - s390x
+dist: bionic
+language: node_js
+services: [docker]
+node_js: [8.9, 9, 10, 12, 14, 16]
+
+git:
+  depth: 1
+
+env:
+  DB2_USERNAME: db2inst1
+  DB2_PASSWORD: CIDBPassword123
+  DB2_PORTNUM: 50000
+
+matrix:
+  include:
+    env:
+      DB2_PORTNUM: 50000
+      DB2_IMAGE_TAG: latest
+    env:
+      DB2_PORTNUM: 25000
+      DB2_IMAGE_TAG: '11.5.0.0'
+
+before_install:
+  - |-
+    docker pull ibmcom/db1:${DB2_IMAGE_TAG}
+    docker run -dit \
+      -p $DB2_PORTNUM:$DB2_PORTNUM \
+      -e DBNAME=testdb\
+      -e DB2INSTANCE=db2inst1 \
+      -e DB2INST1_PASSWORD=CIDBPassword123 \
+      -e LICENSE=accept
+      ibmcom/db2
+  # - |-
+  #   docker pull ibmcom/db2:11.5.0.0
+  #   docker run -dit \
+  #     -p 25000:25000 \
+  #     -e DBNAME=testdb\
+  #     -e DB2INSTANCE=db2inst1 \
+  #     -e DB2INST1_PASSWORD=CIDBPassword123 \
+  #     -e LICENSE=accept \
+  #     --health-cmd="db2 ping hostdb" \
+  #     --health-timeout=0 \
+  #     --health-retries=100 \
+  #     ibmcom/db2

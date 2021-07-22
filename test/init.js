@@ -11,19 +11,21 @@ const Connector = require('../');
 const juggler = require('loopback-datasource-juggler');
 let DataSource = juggler.DataSource;
 
+let schemaName, db;
+
 /** these are the env variables in jenkins **/
 if (process.env.CI && process.env.PACKAGE_NAME &&
   (process.env.BUILD_NUMBER || process.env.BUILD_ID) &&
   (process.env.nodeVersion || process.env.node)) {
-  var buildName = process.env.PACKAGE_NAME.split('-')[2].toUpperCase();
-  var buildNumber = process.env.BUILD_NUMBER || process.env.BUILD_ID;
-  var nodeVersion = process.env.nodeVersion || process.env.node;
-  var os = process.env.OS || process.platform;
-  var schemaName = 'SCHEMA' + buildNumber +
+  const buildName = process.env.PACKAGE_NAME.split('-')[2].toUpperCase();
+  const buildNumber = process.env.BUILD_NUMBER || process.env.BUILD_ID;
+  const nodeVersion = process.env.nodeVersion || process.env.node;
+  const os = process.env.OS || process.platform;
+  schemaName = 'SCHEMA' + buildNumber +
     '_' + buildName + '_' + os.toUpperCase() + '_' + nodeVersion;
 }
 
-var config = {
+const config = {
   username: process.env.DB2_USERNAME,
   password: process.env.DB2_PASSWORD,
   hostname: process.env.DB2_HOSTNAME || 'localhost',
@@ -34,7 +36,6 @@ var config = {
 
 global.config = config;
 
-let db;
 global.getDataSource = global.getSchema = function(options) {
   db = new DataSource(Connector, global.config);
   db.log = function(a) {

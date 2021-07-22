@@ -92,7 +92,7 @@ function dropSchema(schema, cb) {
       "${schema}"."${viewName}";`, function(err, result) {
       cb(err);
     });
-  };
+  }
 
   function dropTable(table, cb) {
     const tableName = table.TABNAME;
@@ -100,8 +100,8 @@ function dropSchema(schema, cb) {
       "${schema}"."${tableName}";`, function(err, result) {
       cb(err);
     });
-  };
-};
+  }
+}
 
 function createTable(command, cb) {
   command = (command + ';').trim();
@@ -109,4 +109,4 @@ function createTable(command, cb) {
     const cmd = command.replace(/"\?"/g, `"${schemaName}"`);
     db.connector.execute(cmd, cb);
   } else cb();
-};
+}

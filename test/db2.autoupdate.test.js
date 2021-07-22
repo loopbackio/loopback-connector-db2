@@ -10,9 +10,9 @@ process.env.NODE_ENV = 'test';
 
 require('./init.js');
 require('should');
-var assert = require('assert');
+const assert = require('assert');
 
-var db, uniquePkIndex, properties, SimpleEmployee;
+let db, uniquePkIndex, properties, SimpleEmployee;
 
 describe('autoupdate', function() {
   before(function(done) {
