@@ -10,10 +10,10 @@ process.env.NODE_ENV = 'test';
 
 require('./init.js');
 require('should');
-var assert = require('assert');
-var Schema = require('loopback-datasource-juggler').Schema;
+const assert = require('assert');
+const Schema = require('loopback-datasource-juggler').Schema;
 
-var db, UserData, NumberData, DateData;
+let db, UserData, NumberData, DateData;
 
 describe('migrations', function() {
   before(function(done) {
@@ -26,7 +26,7 @@ describe('migrations', function() {
 
     UserData = db.define('UserData', {
       email: {type: String, null: false, index: true,
-        db2: {columnName: 'email', dataType: 'VARCHAR',
+        db2: {columnName: 'email', dataType: 'constCHAR',
           dataLength: 512, nullable: true}},
       name: String,
       bio: Schema.Text,
@@ -65,21 +65,21 @@ describe('migrations', function() {
           {
             COLNO: 0,
             DATALENGTH: 512,
-            DATATYPE: 'VARCHAR',
+            DATATYPE: 'constCHAR',
             NAME: 'email',
             NULLS: 'N',
           },
           {
             COLNO: 1,
             DATALENGTH: 512,
-            DATATYPE: 'VARCHAR',
+            DATATYPE: 'constCHAR',
             NAME: 'name',
             NULLS: 'Y',
           },
           {
             COLNO: 2,
             DATALENGTH: 4096,
-            DATATYPE: 'VARCHAR',
+            DATATYPE: 'constCHAR',
             NAME: 'bio',
             NULLS: 'Y',
           },
@@ -147,7 +147,7 @@ describe('migrations', function() {
 
   //     fields.should.be.eql({
   //       idString: { Field: 'idString',
-  //         Type: 'varchar(255)',
+  //         Type: 'constchar(255)',
   //         Null: 'NO',
   //         Key: 'PRI',
   //         Default: null,
@@ -159,7 +159,7 @@ describe('migrations', function() {
   //         Default: null,
   //         Extra: '' },
   //       mediumString: { Field: 'mediumString',
-  //         Type: 'varchar(255)',
+  //         Type: 'constchar(255)',
   //         Null: 'NO',
   //         Key: '',
   //         Default: null,
@@ -177,7 +177,7 @@ describe('migrations', function() {
   //         Default: null,
   //         Extra: '' },
   //       text: { Field: 'text',
-  //         Type: 'varchar(1024)',
+  //         Type: 'constchar(1024)',
   //         Null: 'YES',
   //         Key: '',
   //         Default: null,
@@ -269,7 +269,7 @@ describe('migrations', function() {
   });
 
   it('should autoupdate', function(done) {
-    var userExists = function(cb) {
+    const userExists = function(cb) {
       query('SELECT * FROM ' + global.config.schema + '.\"UserData\"',
         function(err, res) {
           cb(!err && res[0].email === 'test@example.com');
@@ -305,7 +305,7 @@ describe('migrations', function() {
               'Email does not allow null');
 
             // change type of name
-            assert.equal(fields[1].DATATYPE, 'VARCHAR',
+            assert.equal(fields[1].DATATYPE, 'constCHAR',
               'Name is not char(50)');
             assert.equal(fields[1].DATALENGTH, 512, 'Length is not 512');
 
@@ -416,6 +416,6 @@ describe('migrations', function() {
   });
 });
 
-var query = function(sql, cb) {
+const query = function(sql, cb) {
   db.adapter.execute(sql, cb);
 };

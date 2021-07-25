@@ -8,10 +8,10 @@
 /* eslint-env node, mocha */
 process.env.NODE_ENV = 'test';
 require('./init.js');
-var assert = require('assert');
-var DataSource = require('loopback-datasource-juggler').DataSource;
+const assert = require('assert');
+const DataSource = require('loopback-datasource-juggler').DataSource;
 
-var config;
+let config;
 
 before(function() {
   config = global.config;
@@ -19,7 +19,7 @@ before(function() {
 
 describe('testConnection', function() {
   it('should pass with valid settings', function(done) {
-    var db = new DataSource(require('../'), config);
+    const db = new DataSource(require('../'), config);
     db.ping(function(err) {
       assert(!err, 'Should connect without err.');
       done();
@@ -27,12 +27,12 @@ describe('testConnection', function() {
   });
 
   it('should pass when valid DSN overrides empty settings', function(done) {
-    var dsn = generateDSN(config);
-    var dbConfig = {
+    const dsn = generateDSN(config);
+    const dbConfig = {
       dsn: dsn,
     };
 
-    var db = new DataSource(require('../'), dbConfig);
+    const db = new DataSource(require('../'), dbConfig);
     db.ping(function(err) {
       assert(!err, 'Should connect without err.');
       done();
@@ -40,8 +40,8 @@ describe('testConnection', function() {
   });
 
   it('should pass when valid DSN overrides invalid settings', function(done) {
-    var dsn = generateDSN(config);
-    var dbConfig = {
+    const dsn = generateDSN(config);
+    const dbConfig = {
       dsn: dsn,
       host: 'invalid-hostname',
       port: 80,
@@ -50,7 +50,7 @@ describe('testConnection', function() {
       password: 'invalid-password',
     };
 
-    var db = new DataSource(require('../'), dbConfig);
+    const db = new DataSource(require('../'), dbConfig);
     db.ping(function(err) {
       assert(!err, 'Should connect without err.');
       done();
@@ -59,7 +59,7 @@ describe('testConnection', function() {
 });
 
 function generateDSN(config) {
-  var dsn =
+  const dsn =
     'DRIVER={DB2}' +
     ';DATABASE=' + config.database +
     ';HOSTNAME=' + config.hostname +

@@ -1,5 +1,9 @@
 # loopback-connector-db2
 
+[![Build Status](https://travis-ci.com/loopbackio/loopback-connector-db2.svg?branch=master)](https://travis-ci.com/loopbackio/loopback-connector-db2)
+[![Continuous Integration](https://github.com/loopbackio/loopback-connector-db2/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/loopbackio/loopback-connector-db2/actions/workflows/continuous-integration.yml)
+[![CodeQL](https://github.com/loopbackio/loopback-connector-db2/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/loopbackio/loopback-connector-db2/actions/workflows/codeql-analysis.yml)
+
 [IBM® DB2®](http://www.ibm.com/analytics/us/en/technology/db2/) is the database of choice for robust, enterprise-wide solutions handling high-volume workloads.
 It is optimized to deliver industry-leading performance while lowering costs.  The `loopback-connector-db2` module is the LoopBack connector for DB2.
 

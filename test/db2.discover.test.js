@@ -7,11 +7,11 @@
 
 /* eslint-env node, mocha */
 process.env.NODE_ENV = 'test';
-var assert = require('assert');
+const assert = require('assert');
 require('./init.js');
 
-// var DataSource = require('loopback-datasource-juggler').DataSource;
-var db, config;
+// const DataSource = require('loopback-datasource-juggler').DataSource;
+let db, config;
 
 before(function() {
   db = global.getDataSource();
@@ -45,7 +45,7 @@ describe('discoverModels', function() {
               console.error(err);
               done(err);
             } else {
-              var views = false;
+              let views = false;
               models.forEach(function(m) {
                 // console.dir(m);
                 if (m.type === 'view') {
@@ -90,7 +90,7 @@ describe('discoverModels', function() {
           console.error(err);
           done(err);
         } else {
-          var views = false;
+          let views = false;
           models.forEach(function(m) {
             // console.dir(m);
             if (m.type === 'view') {
@@ -120,7 +120,7 @@ describe('Discover models including other users', function() {
           console.error(err);
           done(err);
         } else {
-          var others = false;
+          let others = false;
           models.forEach(function(m) {
             // console.dir(m);
             if (m.owner !== config.schema) {
@@ -282,9 +282,9 @@ describe('Discover model foreign keys', function() {
         if (err) {
           done(err);
         } else {
-          var fkNames = ['RESERVATION_CUSTOMER_FK', 'RESERVATION_LOCATION_FK',
+          const fkNames = ['RESERVATION_CUSTOMER_FK', 'RESERVATION_LOCATION_FK',
             'RESERVATION_PRODUCT_FK'];
-          var areFKInvalid = false;
+          let areFKInvalid = false;
           models.forEach(function(m) {
             assert(m.fkTableName === 'RESERVATION');
             if (!(fkNames.indexOf(m.fkName) > -1)) {
@@ -353,7 +353,7 @@ describe('Discover and build models', function() {
 
           assert(models.Inventory,
             'Inventory model should be discovered and built');
-          var schema = models.Inventory.definition;
+          const schema = models.Inventory.definition;
           assert(schema.settings.db2.schema === config.schema);
           assert(schema.settings.db2.table === 'INVENTORY');
           assert(schema.properties.productId);

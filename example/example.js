@@ -5,10 +5,10 @@
 
 'use strict';
 
-var DataSource = require('loopback-datasource-juggler').DataSource;
-var DB2 = require('../'); // loopback-connector-db2
+const DataSource = require('loopback-datasource-juggler').DataSource;
+const DB2 = require('../'); // loopback-connector-db2
 
-var config = {
+const config = {
   username: process.env.DB2_USERNAME,
   password: process.env.DB2_PASSWORD,
   hostname: process.env.DB2_HOSTNAME,
@@ -16,9 +16,9 @@ var config = {
   database: 'SQLDB',
 };
 
-var db = new DataSource(DB2, config);
+const db = new DataSource(DB2, config);
 
-var User = db.define('User', {name: {type: String}, email: {type: String},
+const User = db.define('User', {name: {type: String}, email: {type: String},
 });
 
 db.autoupdate('User', function(err) {
@@ -39,6 +39,6 @@ db.autoupdate('User', function(err) {
   });
 
   User.destroyAll(function() {
-    console.log('example complete');
+    console.log('example compconste');
   });
 });

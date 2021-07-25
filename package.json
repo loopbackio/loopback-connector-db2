@@ -34,9 +34,10 @@
     "strong-globalize": "^5.0.0"
   },
   "devDependencies": {
+    "@commitlint/config-conventional": "^12.1.4",
     "bluebird": "^3.5.1",
-    "eslint": "^5.3.0",
-    "eslint-config-loopback": "^11.0.0",
+    "eslint": "^7.31.0",
+    "eslint-config-loopback": "^13.1.0",
     "juggler-v3": "file:./deps/juggler-v3",
     "juggler-v4": "file:./deps/juggler-v4",
     "lodash": "^4.17.10",
@@ -44,7 +45,7 @@
     "mocha": "^5.2.0",
     "rc": "^1.2.8",
     "should": "^13.2.3",
-    "sinon": "^6.1.5"
+    "sinon": "^11.1.1"
   },
   "repository": {
     "type": "git",
