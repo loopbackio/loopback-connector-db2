@@ -134,7 +134,7 @@ jobs:
       with:
         fetch-depth: 1
     - name: Run test harness
-      uses: loopbackio/loopback-ibmdb/test@ghaction-test
+      uses: loopbackio/loopback-ibmdb/test@ci/ghaction-test
       with:
         node-version: ${{ github.matrix.node-version }}
         db2-version: ${{ github.matrix.db2-version }}
