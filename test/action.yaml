@@ -42,8 +42,6 @@ runs:
         db2-license: accept
         db2-version: ${{ matrix.db2-version }}
         db2-password: P00lGnorts
-    - name: Setup FakeTTY
-      uses: Yuri6037/Action-FakeTTY@1abc69c7d530815855caedcd73842bae5687c1a6 # V1.1
     - name: Run tests
       env:
         DB2_USERNAME: db2inst1
