@@ -1,0 +1,158 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: Copyright 2024 LoopBack contributors
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+permissions: {}
+
+jobs:
+  code-lint:
+    name: Code lint
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Harden runner
+        uses: step-security/harden-runner@0d381219ddf674d61a7572ddd19d7941e271515c # v2.9.0
+        with:
+          egress-policy: audit
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - name: Bootstrap dependencies
+        run: npm ci --ignore-scripts
+      - name: Verify code linting
+        run: npm run lint --ignore-scripts
+  commit-lint:
+    name: Commit lint
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    if: ${{ github.event.pull_request }}
+    steps:
+      - name: Harden runner
+        uses: step-security/harden-runner@0d381219ddf674d61a7572ddd19d7941e271515c # v2.9.0
+        with:
+          egress-policy: audit
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - name: Bootstrap dependencies
+        run: npm ci --ignore-scripts
+      - name: Verify Commit Linting
+        run: |
+          npm exec \
+            --no \
+            --package=@commitlint/cli \
+            -- \
+            commitlint \
+              --from=origin/master \
+              --to=HEAD \
+              --verbose
+  license-lint:
+    name: License lint
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Harden runner
+        uses: step-security/harden-runner@0d381219ddf674d61a7572ddd19d7941e271515c # v2.9.0
+        with:
+          disable-sudo: true
+          egress-policy: block
+          allowed-endpoints: >
+            github.com:443
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 1
+      - name: Setup REUSE tool
+        uses: fsfe/reuse-action@3ae3c6bdf1257ab19397fab11fd3312144692083 # v4.0.0
+  test:
+    name: Test
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version:
+          - 16
+          - 18
+          - 20
+          - 22
+        db2-version:
+          - :11.5.9.0@sha256:77095d4e04cf4448c0257086afcb2c166193d718dc33441da3b949f97e21efd5
+    steps:
+    - name: Harden runner
+      uses: step-security/harden-runner@0d381219ddf674d61a7572ddd19d7941e271515c # v2.9.0
+      with:
+        egress-policy: audit
+    - name: Checkout
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      with:
+        fetch-depth: 1
+        submodules: true
+    - name: Run test harness
+      env:
+        DB2_VERSION: ${{ matrix.db2-version }}
+      run: ./cicd/well-known/test-harness.sh
+  test-ibmdb:
+    name: Cross-test (IBM DB)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version:
+          - 16
+          - 18
+          - 20
+          - 22
+        db2-version:
+          - :11.5.9.0@sha256:77095d4e04cf4448c0257086afcb2c166193d718dc33441da3b949f97e21efd5
+    steps:
+    - name: Harden runner
+      uses: step-security/harden-runner@0d381219ddf674d61a7572ddd19d7941e271515c # v2.9.0
+      with:
+        egress-policy: audit
+    - name: Checkout
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      with:
+        fetch-depth: 1
+        path: loopback-connector-db2
+        submodules: true
+    - name: Clone IBM DB base connector repository
+      run: |
+        git clone \
+          --branch=ci/ghaction-test \
+          --depth=1 \
+          https://github.com/loopbackio/loopback-ibmdb.git
+        cd loopback-ibmdb
+        git submodule update --init --depth=1
+    - name: Setup Node.js
+      uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: npm
+        cache-dependency-path: |
+          ./loopback-ibmdb/package-lock.json
+          ./loopback-connector-db2/package-lock.json
+    - name: Setup and run test harness
+      env:
+        DB2_VERSION: ${{ matrix.db2-version }}
+      run: |
+        ./loopback-ibmdb/cicd/well-known/prepare-autoinstall.sh
+        . ./loopback-ibmdb/cicd/tmp/well-known/set-env/post-prepare-autoinstall.sh
+        ./loopback-connector-db2/cicd/well-known/test-harness.sh

@@ -1,0 +1,4 @@
+[submodule "cicd/vendor/setup-db2"]
+	path = cicd/vendor/setup-db2
+	url = https://github.com/achrinza/setup-db2.git
+	branch = v0.1.0

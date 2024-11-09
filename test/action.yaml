@@ -1,0 +1,58 @@
+name: LoopBack DB2 LUW Connector Test Suite in GitHub Actions
+description: The LoopBack DB2 LUW connector test suite in GitHub Actions
+inputs:
+  node-version:
+    description: Node.js version
+    required: true
+  db2-version:
+    description: DB2 LUW OCI image tag or digest
+    required: true
+  _internal-mode:
+    description: For internal use only. When "true", it'll "npm test" from "$GITHUB_WORKSPACE" instead of "$GITHUB_ACTION_PATH".
+    default: false
+runs:
+  using: composite
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: npm
+    - name: Bootstrap dependencies
+      shell: bash
+      run: |-
+        if [ "$INPUT__internal-mode" != 'true' ]; then
+          cd "$GITHUB_ACTION_PATH/.."
+        fi
+        npm ci --prefer-offline
+    - name: Bootstrap overriding dependencies
+      shell: bash
+      run: |-
+        if [ "$INPUT__internal-mode" != 'true' ]; then
+          cd "$GITHUB_ACTION_PATH/.."
+          AUTOINSTALL_DIR="$GITHUB_WORKSPACE/ghaction-autoinstall"
+          if [ -d "$AUTOINSTALL_DIR" ]; then
+            find "$AUTOINSTALL_DIR" -iname '*.tgz' \
+            | xargs -I{} npm install '{}'
+          fi
+        fi
+    - name: Start DB2 LUW server
+      uses: achrinza/setup-db2@22b422caf827a3a840d9e17c1a4f9be87dcbbcd5 # v0.1.0
+      with:
+        db2-license: accept
+        db2-version: ${{ matrix.db2-version }}
+        db2-password: P00lGnorts
+    - name: Run tests
+      env:
+        DB2_USERNAME: db2inst1
+        DB2_PASSWORD: P00lGnorts
+        DB2_HOSTNAME: localhost
+        DB2_PORTNUM: 50000
+        DB2_DATABASE: mydb
+      shell: bash
+      run: |-
+        if [ "$INPUT__internal-mode" != 'true' ]; then
+          cd "$GITHUB_ACTION_PATH/.."
+        fi
+        npm run pretest --ignore-scripts
+        npm test --ignore-scripts
