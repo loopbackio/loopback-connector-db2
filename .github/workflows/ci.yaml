@@ -36,10 +36,6 @@ jobs:
         with:
           db2-license: accept
       - name: Run Tests
-        env:
-          DB2_USERNAME: db2inst1
-          DB2_PASSWORD: password
-          DB2_PORT: 50000
         run: npm test
 
   code-lint:
