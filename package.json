@@ -38,6 +38,7 @@
     "bluebird": "^3.5.1",
     "eslint": "^5.3.0",
     "eslint-config-loopback": "^11.0.0",
+    "eslint-plugin-mocha": "^6.3.0",
     "juggler-v3": "file:./deps/juggler-v3",
     "juggler-v4": "file:./deps/juggler-v4",
     "lodash": "^4.17.10",

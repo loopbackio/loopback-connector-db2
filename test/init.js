@@ -16,13 +16,8 @@ var config = {
   password: process.env.DB2_PASSWORD || 'password',
   hostname: process.env.DB2_HOSTNAME || 'localhost',
   port: process.env.DB2_PORTNUM || 50000,
-<<<<<<< Updated upstream
-  database: process.env.DB2_DATABASE || 'db2inst',
-  schema: schemaName || process.env.DB2_SCHEMA || 'STRONGLOOP',
-=======
   database: process.env.DB2_DATABASE || 'mydb',
   schema: process.env.DB2_SCHEMA || 'STRONGLOOP',
->>>>>>> Stashed changes
 };
 
 global.config = config;
