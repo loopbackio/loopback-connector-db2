@@ -1,0 +1,62 @@
+# This workflow is managed by gh actions-lock.
+
+on:
+  push:
+    branches:
+      - master
+  pull_request: {}
+
+name: CI
+
+permissions: {}
+
+jobs:
+  test:
+    name: Test
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [22, 24, 26]
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
+    steps:
+      - uses: step-security/harden-runner@v2.20.1
+        with:
+          disable-sudo: true
+          egress-policy: audit
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Bootstrap Dependencies
+        run: npm ci
+      - name: Setup DB2
+        uses: achrinza/setup-db2@v0.1.0
+        with:
+          db2-license: accept
+      - name: Run Tests
+        env:
+          DB2_USERNAME: db2inst1
+          DB2_PASSWORD: password
+          DB2_PORT: 50000
+        run: npm test
+
+  code-lint:
+    name: Code Lint
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: step-security/harden-runner@v2.20.1
+        with:
+          disable-sudo: true
+          egress-policy: audit
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - name: Bootstrap Dependencies
+        run: npm ci --ignore-scripts
+      - name: Check Code Lint
+        run: npm run lint
