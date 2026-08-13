@@ -3,7 +3,7 @@
   "version": "2.2.3",
   "description": "LoopBack Connector for IBM DB2",
   "engines": {
-    "node": ">=8.9"
+    "node": "22 || 24 || 26"
   },
   "keywords": [
     "LoopBack",
